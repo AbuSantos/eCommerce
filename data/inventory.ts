@@ -7,7 +7,6 @@ export interface InventoryType {
   sizes: string[];
   colors: string[];
   price: number;
-  currency: string;
   description: string;
   sku: string;
 }
@@ -29,7 +28,6 @@ export const inventory: InventoryType[] = [
     sizes: ["one-size"],
     categories: ["bags"],
     colors: ["brown"],
-    currency: "NGN",
   },
   {
     id: "8d1a33a5-5650-4bd7-bb70-ba4670090700",
@@ -47,7 +45,6 @@ export const inventory: InventoryType[] = [
     sizes: ["one-size"],
     categories: ["bags"],
     colors: ["blue"],
-    currency: "NGN",
   },
   {
     id: "e882fe48-253c-40fb-8155-51b47b063c1a",
@@ -63,7 +60,6 @@ export const inventory: InventoryType[] = [
     sizes: ["s", "m", "l", "xl"],
     categories: ["belts"],
     colors: ["brown"],
-    currency: "NGN",
   },
   {
     id: "6853a582-fc95-44af-9dac-dffbc694b47d",
@@ -79,7 +75,6 @@ export const inventory: InventoryType[] = [
     sizes: ["s", "m", "l", "xl"],
     categories: ["belts"],
     colors: ["black"],
-    currency: "NGN",
   },
   {
     id: "b5980fb9-142b-4e0b-9683-daac07827e0a",
@@ -96,7 +91,6 @@ export const inventory: InventoryType[] = [
     sizes: ["one-size"],
     categories: ["scarves"],
     colors: ["green"],
-    currency: "NGN",
   },
   {
     id: "743b3855-6487-4d52-80fc-bcb8ca4fa74b",
@@ -112,7 +106,6 @@ export const inventory: InventoryType[] = [
     sizes: ["s", "m", "l", "xl"],
     categories: ["gloves"],
     colors: ["brown"],
-    currency: "NGN",
   },
   {
     id: "83ea928a-d834-4c6d-a588-4c93ec2de3c0",
@@ -128,7 +121,6 @@ export const inventory: InventoryType[] = [
     sizes: ["s", "m", "l", "xl"],
     categories: ["gloves"],
     colors: ["black"],
-    currency: "NGN",
   },
   {
     id: "c5ef468d-d49e-4aa5-be5b-41f34af40b19",
@@ -145,7 +137,6 @@ export const inventory: InventoryType[] = [
     sizes: ["one-size"],
     categories: ["sunglasses"],
     colors: ["yellow"],
-    currency: "NGN",
   },
   {
     id: "dd27c79d-97c3-47bb-9172-4ea74b096f6f",
@@ -161,6 +152,5 @@ export const inventory: InventoryType[] = [
     sizes: ["one-size"],
     categories: ["sunglasses"],
     colors: ["black"],
-    currency: "NGN",
   },
 ];

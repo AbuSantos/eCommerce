@@ -1,3 +1,6 @@
+import { InventoryType, inventory } from "@/data/inventory";
+import { useMemo, useReducer } from "react";
+
 export type CartItemType = {
     id: string,
     name: string,
@@ -8,8 +11,8 @@ export type CartItemType = {
     price: number,
     sku: string,
     qty: number,
-    desccription: string,
-    currency: string
+    description: string,
+    categories: string[]
 }
 
 type CartStateType = { cart: CartItemType[] }
@@ -33,19 +36,108 @@ export type ReducerAction = {
 const reducer = (state: CartStateType, action: ReducerAction): CartStateType => {
     switch (action.type) {
         case REDUCER_ACTION_TYPE.ADD: {
-            
+            // placing a type guard just incase a value is mising
+            if (!action.payload) {
+                throw new Error("action.payload missing in ADD action")
+            }
+            //we distructuring the items we need
+            const {
+                id,
+                name,
+                image,
+                images,
+                sizes,
+                colors,
+                price,
+                sku,
+                description,
+                categories,
+            } = action.payload
+
+            // we filtered out the other items that wont be updated
+            const filteredCart: CartItemType[] = state.cart.filter(item => item.id !== id)
+            const itemsExist: CartItemType | undefined = state.cart.find(item => item.id === id)
+            // we check the cart if it already has an itemsExist, if not we add 1
+            const qty: number = itemsExist ? itemsExist?.qty + 1 : 1
+            return {
+                ...state, cart: [...filteredCart, {
+                    id,
+                    name,
+                    image,
+                    images,
+                    sizes,
+                    colors,
+                    price,
+                    sku,
+                    qty,
+                    description,
+                    categories
+                }]
+            }
+
         }
-            
-            break;
-    
+
+        case REDUCER_ACTION_TYPE.QUANTITY: {
+            if (!action.payload) {
+                throw new Error("action.payload missing in QUANTITY action")
+            }
+            const {
+                id,
+                qty
+            } = action.payload
+
+            // we filtered out the other items that wont be updated
+            const itemExist: CartItemType | undefined = state.cart.find(item => item.id === id)
+            // we throw a new error of the item does not exist
+            if (!itemExist) {
+                throw new Error("Item does not exist or its no Longer available")
+            }
+            const updatedItem: CartItemType = { ...itemExist, qty }
+
+            const filteredCart: CartItemType[] = state.cart.filter(item => item.id !== id)
+            return { ...state, cart: [...filteredCart, updatedItem] }
+        }
+
+        case REDUCER_ACTION_TYPE.REMOVE: {
+            if (!action.payload) {
+                throw new Error("action.payload missing in REMOVE action")
+            }
+            const {
+                id
+            } = action.payload
+
+            // we filtered out the other items that wont be updated
+            const filteredCart: CartItemType[] = state.cart.filter(item => item.id !== id)
+            return { ...state, cart: [...filteredCart] }
+        }
+
+        //we will set up the payment with paystack soon
+        case REDUCER_ACTION_TYPE.SUBMIT: {
+            return { ...state, cart: [] }
+        }
         default:
-            break;
+            throw new Error("Unidentified Reducer action type")
+
     }
 }
-const CartProvider = () => {
-    return (
-        <div>CartProvider</div>
-    )
-}
 
-export default CartProvider
+const useCartContext = (inventory: CartStateType) => {
+    const [state, dispatch] = useReducer(reducer, inventory)
+
+    const REDUCER_ACTIONS = useMemo(() => {
+        return REDUCER_ACTION_TYPE
+    }, [])
+
+    const totalItems: number = state.cart.reduce((prev, cartItem) => {
+        return prev + cartItem.qty
+    }, 0)
+
+
+    const totalPrice = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'NGN' }).format(
+        //the 0 starts the reduce with the initial value
+        state.cart.reduce((prev, cartItem) => {
+            return prev + (cartItem.price * cartItem.qty)
+        }, 0))
+
+    return { dispatch, REDUCER_ACTIONS, totalItems, totalPrice }
+}
