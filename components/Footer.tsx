@@ -1,6 +1,11 @@
+
 const Footer = () => {
+    const year: number = new Date().getFullYear()
+
     return (
-        <div>Footer</div>
+        <>
+            <p>Shopping Cart: &copy; {year} </p>
+        </>
     )
 }
 
