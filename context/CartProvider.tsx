@@ -1,5 +1,5 @@
 import { InventoryType, inventory } from "@/data/inventory";
-import { useMemo, useReducer } from "react";
+import { useMemo, useReducer, createContext, ReactNode, ReactElement } from "react";
 
 export type CartItemType = {
     id: string,
@@ -141,3 +141,26 @@ const useCartContext = (inventory: CartStateType) => {
 
     return { dispatch, REDUCER_ACTIONS, totalItems, totalPrice }
 }
+
+export type UseCartContextType = ReturnType<typeof useCartContext>
+
+const initCartContextState: UseCartContextType = {
+    dispatch: () => { },
+    REDUCER_ACTIONS: REDUCER_ACTION_TYPE,
+    totalItems: 0,
+    totalPrice: ''
+}
+
+export const CartContext = createContext<UseCartContextType>(initCartContextState)
+
+type childrenType = { children?: ReactElement | ReactElement[] }
+
+export const CartProvider = ({ children }: childrenType): ReactElement => {
+    return (
+        <CartContext.Provider value={useCartContext(initCartState)}>
+            {children}
+        </CartContext.Provider>
+    )
+}
+
+export default CartContext
