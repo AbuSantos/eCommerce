@@ -24,21 +24,24 @@ const Product = ({ product, dispatch, inCart, REDUCER_ACTIONS }: PropsType): Rea
         return currency
     }
 
-    const content = (
-        <article>
-            <h3>{product.name}</h3>
-            <Image
-                src={product?.image}
-                width={300}
-                height={200}
-                alt={product.name}
-            />
-            <p>
-                {formatCurrency(product.price)}{itemInCart}
-            </p>
-            <button onClick={addToCart}>Add to Cart</button>
-        </article>
-    )
+    const content =
+        <div className="grid grid-cols-3">
+            <article >
+                <h3>{product.name}</h3>
+                <img
+                    src={product?.image}
+                    width={300}
+                    height={200}
+                    alt={product.name}
+                />
+                <p className="w-4/12">{product.description}</p>
+                <p>
+                    {formatCurrency(product.price)}{itemInCart}
+                </p>
+                <button onClick={addToCart}>Add to Cart</button>
+            </article>
+        </div>
+
 
     return content
 }
