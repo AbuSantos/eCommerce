@@ -1,3 +1,4 @@
+"use client"
 import { InventoryType, inventory } from "@/data/inventory";
 import { useMemo, useReducer, createContext, ReactNode, ReactElement } from "react";
 

@@ -1,3 +1,5 @@
+"use client"
+
 import { InventoryType, inventory } from "@/data/inventory";
 import { ReactNode, createContext, useState } from "react";
 

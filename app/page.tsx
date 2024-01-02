@@ -8,12 +8,12 @@ export default function Home() {
   const [viewCart, setViewCart] = useState<boolean>(false)
   const pageContent = viewCart ? <Cart /> : <ProductList />
 
-  const content = (
+  const Content = (
     <>
       <Header viewCart={viewCart} setViewCart={setViewCart} />
       {pageContent}
     </>
   )
 
-  return content
+  return Content
 }
