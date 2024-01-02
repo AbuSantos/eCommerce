@@ -9,7 +9,12 @@ const ProductList = () => {
     console.log(products);
 
     let pageContent: ReactElement | ReactElement[] = <p>loading...</p>
-
+ 
+    if(products?.length ) {
+        pageContent= products.map(product =>{
+            // const inCart:boolean = cart.
+        })
+    }
     return (
         <div>ProductList</div>
     )
