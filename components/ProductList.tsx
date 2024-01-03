@@ -2,19 +2,17 @@ import useCart from "@/hooks/useCart";
 import useProduct from "@/hooks/useProduct"
 import { UseProductContextType } from "@/context/InventoryProvider";
 import { ReactElement } from "react";
-import Product from "./Product";
+import Product from "./ui/Product";
 
 const ProductList = () => {
     const { dispatch, REDUCER_ACTIONS, cart } = useCart()
     const { products } = useProduct()
-    console.log(products);
 
     let pageContent: ReactElement | ReactElement[] = <p>loading...</p>
 
     if (products?.length) {
         pageContent = products.map(product => {
             const inCart: boolean = cart.some(item => item.id === product.id);
-
             return (
                 <Product
                     key={product.id}
@@ -25,14 +23,15 @@ const ProductList = () => {
                 />
             )
         })
-
-
     }
     const content = (
-        <main>
+        <main className="grid grid-cols-3 w-10/12 gap-4  m-auto">
             {pageContent}
         </main>
+
     )
+
+
     return content
 }
 
