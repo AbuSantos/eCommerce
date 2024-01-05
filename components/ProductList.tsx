@@ -2,7 +2,7 @@ import useCart from "@/hooks/useCart";
 import useProduct from "@/hooks/useProduct"
 import { UseProductContextType } from "@/context/InventoryProvider";
 import { ReactElement } from "react";
-import Product from "./ui/Product";
+import Product from "./Product";
 
 const ProductList = () => {
     const { dispatch, REDUCER_ACTIONS, cart } = useCart()

@@ -10,7 +10,6 @@ type PropsType = {
     dispatch: React.Dispatch<ReducerAction>,
     inCart: boolean,
     REDUCER_ACTIONS: ReducerActionType,
-
 }
 
 const Product = ({ product, dispatch, inCart, REDUCER_ACTIONS }: PropsType): ReactElement => {
