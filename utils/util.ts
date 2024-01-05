@@ -21,3 +21,12 @@ export function getSizeName(value: string | undefined) {
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
+
+export const formatCurrency = (value: any) => {
+  const currency = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "NGN",
+  }).format(value);
+
+  return currency;
+};

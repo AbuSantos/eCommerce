@@ -3,9 +3,10 @@ import { useState } from "react"
 import Link from "next/link"
 // import { ArrowRight } from "lucide-react"
 // import { formatCurrencyString, useShoppingCart } from "use-shopping-cart"
-import { InventoryType } from "@/data/inventory"
+import { InventoryType, } from "@/data/inventory"
 import useCart from "@/hooks/useCart"
-import { getSizeName } from "@/utils/util"
+import { formatCurrency, getSizeName } from "@/utils/util"
+import { Button } from "./ui/Button"
 
 // import { Button } from "@/components/ui/button"
 // import { useToast } from "@/components/ui/use-toast"
@@ -31,7 +32,7 @@ export function ProductInfo({ product }: PropsType) {
 
             <div className="mt-3">
                 <h2 className="sr-only">Product information</h2>
-                {/* <p className="text-3xl tracking-tight">{formatCurrencyString({ currency: "USD", value: price })}</p> */}
+                <p className="text-3xl tracking-tight">{formatCurrency(price)}</p>
             </div>
 
             <div className="mt-6">
@@ -44,12 +45,12 @@ export function ProductInfo({ product }: PropsType) {
                     Size: <strong>{getSizeName(selectSize)}</strong>
                 </p>
                 {sizes.map((size: string | undefined) => (
-                    <button
+                    <Button
                         onClick={() => setSelectedSize(size)}
-                        // variant={selectSize === size ? "default" : "outline"}
+                        variant={selectSize === size ? "outline" : "default"}
                         key={size} className="mr-2 mt-4">
                         {getSizeName(size)}
-                    </button>
+                    </Button>
                 ))}
             </div>
 

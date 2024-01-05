@@ -4,6 +4,7 @@ import { ReactElement } from "react";
 import Image from "next/image";
 import "@/style/style.module.css"
 import Link from "next/link";
+import { formatCurrency } from "@/utils/util";
 
 type PropsType = {
     product: InventoryType,
@@ -13,17 +14,12 @@ type PropsType = {
 }
 
 const Product = ({ product, dispatch, inCart, REDUCER_ACTIONS }: PropsType): ReactElement => {
-    console.log(product);
+    // console.log(product);
     const addToCart = () => dispatch({ type: REDUCER_ACTIONS.ADD, payload: { ...product, qty: 1 } })
 
     const itemInCart = inCart ? "Item in cart: ✅" : null
 
-    const formatCurrency = (value: any) => {
 
-        const currency = new Intl.NumberFormat("en-US", { style: "currency", currency: "NGN" }).format(value)
-
-        return currency
-    }
 
     const content = (
         <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
