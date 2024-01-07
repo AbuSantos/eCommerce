@@ -1,10 +1,10 @@
 import { InventoryType, inventory } from "@/data/inventory";
 import { ReducerActionType, ReducerAction } from "@/context/CartProvider";
-import { ReactElement } from "react";
-import Image from "next/image";
+import { ReactElement, useEffect, useState } from "react";
 import "@/style/style.module.css"
 import Link from "next/link";
 import { formatCurrency } from "@/utils/util";
+
 
 type PropsType = {
     product: InventoryType,
@@ -14,12 +14,33 @@ type PropsType = {
 }
 
 const Product = ({ product, dispatch, inCart, REDUCER_ACTIONS }: PropsType): ReactElement => {
+    const [added, setAdded] = useState<String>('Add to Cart')
+    const addToCart = () => dispatch({
+        type: REDUCER_ACTIONS.ADD, payload: {
+            ...product, qty: 1
+        }
+    })
+    useEffect(() => {
+        // Update the added state when inCart changes
+        if (inCart) {
+            setAdded("carted: ✅");
+
+            // Reset the added state after 3 seconds
+            setTimeout(() => {
+                setAdded("Add to Cart");
+            }, 1000);
+
+            // Clear the timeout when the component unmounts or inCart changes
+            // return () => clearTimeout(timeoutId);
+        } else {
+            // If not in cart, set the default message
+            setAdded("Add to Cart");
+        }
+    }, [inCart]);
+
     // console.log(product);
-    const addToCart = () => dispatch({ type: REDUCER_ACTIONS.ADD, payload: { ...product, qty: 1 } })
 
-    const itemInCart = inCart ? "Item in cart: ✅" : null
-
-
+    // const itemInCart = inCart ? "Added" : added
 
     const content = (
         <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
@@ -38,7 +59,7 @@ const Product = ({ product, dispatch, inCart, REDUCER_ACTIONS }: PropsType): Rea
 
                 <div className="flex items-center justify-between">
                     <span className="text-xl font-bold text-gray-900 dark:text-white"> {formatCurrency(product.price)}</span>
-                    <button onClick={addToCart} className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">{inCart ? "Added" : "Add To Cart"}</button>
+                    <button onClick={addToCart} className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">{added}</button>
                 </div>
             </div>
         </div>

@@ -30,8 +30,6 @@ const ProductList = () => {
         </main>
 
     )
-
-
     return content
 }
 

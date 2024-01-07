@@ -9,19 +9,17 @@ type PropsType = {
 
 const Header = ({ viewCart, setViewCart }: PropsType) => {
     const { totalItems, totalPrice } = useCart() || {}
-    // console.log(totalPrice);
+    console.log(viewCart);
 
     const content = (
-        <header className="w-11/12  m-auto">
+        <header className="w-11/12 m-auto">
             <div className="flex justify-between">
                 <h1>buyMe</h1>
-                {viewCart !== undefined && setViewCart !== undefined && (
-                    <div>
-                        <p>Total Items: {totalItems}</p>
-                        <p>Total Price: {totalPrice}</p>
-                        <NavButton viewCart={viewCart} setViewCart={setViewCart} />
-                    </div>
-                )}
+                <div>
+                    <p>Total Items: {totalItems}</p>
+                    <p>Total Price: {totalPrice}</p>
+                    <NavButton viewCart={viewCart} setViewCart={setViewCart} />
+                </div>
             </div>
         </header>
     )
