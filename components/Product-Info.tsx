@@ -25,7 +25,6 @@ export function ProductInfo({ product }: PropsType) {
 
     const addToCart = () => dispatch({ type: REDUCER_ACTIONS.ADD, payload: { ...product, qty: 1 } })
 
-
     return (
         <div className="mt-10 px-4 sm:mt-16 sm:px-0 lg:mt-0">
             <h1 className="text-3xl font-bold tracking-tight">{name}</h1>

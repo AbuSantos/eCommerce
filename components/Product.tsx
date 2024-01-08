@@ -25,13 +25,11 @@ const Product = ({ product, dispatch, inCart, REDUCER_ACTIONS }: PropsType): Rea
         if (inCart) {
             setAdded("carted: ✅");
 
-            // Reset the added state after 3 seconds
+            // Reset the added state after 2 seconds
             setTimeout(() => {
                 setAdded("Add to Cart");
-            }, 1000);
+            }, 2000);
 
-            // Clear the timeout when the component unmounts or inCart changes
-            // return () => clearTimeout(timeoutId);
         } else {
             // If not in cart, set the default message
             setAdded("Add to Cart");

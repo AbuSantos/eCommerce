@@ -24,7 +24,7 @@ const REDUCER_ACTION_TYPE = {
     ADD: "ADD",
     REMOVE: "REMOVE",
     QUANTITY: "QUANTITY",
-    SUBMIT: "SUBMIT"
+    SUBMIT: "SUBMIT",
 }
 
 export type ReducerActionType = typeof REDUCER_ACTION_TYPE
