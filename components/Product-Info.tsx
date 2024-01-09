@@ -1,8 +1,5 @@
-"use client"
 import { useState } from "react"
 import Link from "next/link"
-// import { ArrowRight } from "lucide-react"
-// import { formatCurrencyString, useShoppingCart } from "use-shopping-cart"
 import { InventoryType, } from "@/data/inventory"
 import useCart from "@/hooks/useCart"
 import { formatCurrency, getSizeName } from "@/utils/util"
@@ -30,9 +27,6 @@ export function ProductInfo({ product }: PropsType) {
             payload: { ...product, qty: 1, sizes: selectSize, colors: selectColor }
         }
     )
-
-
-
 
     return (
         <div className="mt-10 px-4 sm:mt-16 sm:px-0 lg:mt-0">

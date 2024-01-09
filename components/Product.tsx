@@ -45,7 +45,7 @@ const Product = ({ product, dispatch, inCart, REDUCER_ACTIONS }: PropsType): Rea
     const content = (
         <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
             <div>
-                {isOpen && <Modal isOpen={isOpen} setIsOpen={setIsOpen} />}
+                {isOpen && <Modal product={product} isOpen={isOpen} setIsOpen={setIsOpen} />}
             </div>
             <Link href={`/product/${product.id}/`}>
                 <img
@@ -62,8 +62,7 @@ const Product = ({ product, dispatch, inCart, REDUCER_ACTIONS }: PropsType): Rea
 
                 <div className="flex items-center justify-between">
                     <span className="text-xl font-bold text-gray-900 dark:text-white"> {formatCurrency(product.price)}</span>
-                    <button onClick={() => setIsOpen((prev) => !prev)}>Toggle Modal</button>
-                    <button onClick={addToCart} className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">{added}</button>
+                    <button onClick={() => setIsOpen((prev) => !prev)} className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">{added}</button>
                 </div>
             </div>
         </div >
