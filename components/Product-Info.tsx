@@ -17,8 +17,9 @@ interface PropsType {
 
 export function ProductInfo({ product }: PropsType) {
     const { dispatch, REDUCER_ACTIONS, cart } = useCart()
-    const { name, description, price, sizes, size } = product
+    const { name, description, price, sizes, colors } = product
     const [selectSize, setSelectedSize] = useState<string | undefined>(product?.sizes[0])
+    const [selectColor, setSelectedColor] = useState<string | undefined>(product?.colors[0])
     // const { addItem, incrementItem, cartDetails } = useShoppingCart()
     // const isInCart = !!cartDetails?.[product._id]
     // const { toast } = useToast()
@@ -26,15 +27,11 @@ export function ProductInfo({ product }: PropsType) {
     const addToCart = () => dispatch(
         {
             type: REDUCER_ACTIONS.ADD,
-            payload: { ...product, qty: 1, sizes: selectSize }
+            payload: { ...product, qty: 1, sizes: selectSize, colors: selectColor }
         }
     )
 
-    const addSize = () => dispatch({
-        type: REDUCER_ACTIONS.SIZE, payload: {
-            ...product, size: selectSize
-        }
-    })
+
 
 
     return (
@@ -64,6 +61,21 @@ export function ProductInfo({ product }: PropsType) {
                         variant={selectSize === size ? "outline" : "default"}
                         key={size} className="mr-2 mt-4">
                         {getSizeName(size)}
+                    </Button>
+                ))}
+            </div>
+            <div className="mt-4">
+                <p>
+                    Color: <strong>{(selectColor)}</strong>
+                </p>
+                {colors.map((color: string | undefined) => (
+                    <Button
+                        onClick={() => {
+                            setSelectedColor(color)
+                        }}
+                        variant={selectColor === color ? "outline" : "default"}
+                        key={color} className="mr-2 mt-4">
+                        {color?.toUpperCase()}
                     </Button>
                 ))}
             </div>
