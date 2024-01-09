@@ -17,13 +17,25 @@ interface PropsType {
 
 export function ProductInfo({ product }: PropsType) {
     const { dispatch, REDUCER_ACTIONS, cart } = useCart()
-    const { name, description, price, sizes } = product
+    const { name, description, price, sizes, size } = product
     const [selectSize, setSelectedSize] = useState<string | undefined>(product?.sizes[0])
     // const { addItem, incrementItem, cartDetails } = useShoppingCart()
     // const isInCart = !!cartDetails?.[product._id]
     // const { toast } = useToast()
 
-    const addToCart = () => dispatch({ type: REDUCER_ACTIONS.ADD, payload: { ...product, qty: 1 } })
+    const addToCart = () => dispatch(
+        {
+            type: REDUCER_ACTIONS.ADD,
+            payload: { ...product, qty: 1, sizes: selectSize }
+        }
+    )
+
+    const addSize = () => dispatch({
+        type: REDUCER_ACTIONS.SIZE, payload: {
+            ...product, size: selectSize
+        }
+    })
+
 
     return (
         <div className="mt-10 px-4 sm:mt-16 sm:px-0 lg:mt-0">
@@ -45,7 +57,10 @@ export function ProductInfo({ product }: PropsType) {
                 </p>
                 {sizes.map((size: string | undefined) => (
                     <Button
-                        onClick={() => setSelectedSize(size)}
+                        onClick={() => {
+                            // addSize()
+                            setSelectedSize(size)
+                        }}
                         variant={selectSize === size ? "outline" : "default"}
                         key={size} className="mr-2 mt-4">
                         {getSizeName(size)}

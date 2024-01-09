@@ -1,6 +1,7 @@
 import { CartItemType } from "@/context/CartProvider"
 import { ReducerAction } from "@/context/CartProvider"
 import { ReducerActionType } from "@/context/CartProvider"
+import { formatCurrency } from "@/utils/util"
 import { validateHeaderValue } from "http"
 import { ChangeEvent, Dispatch, ReactElement } from "react"
 
@@ -35,22 +36,33 @@ const CartLineItem = ({ dispatch, item, REDUCER_ACTIONS }: PropsType) => {
 
     const onremove = () => dispatch({ type: REDUCER_ACTIONS.REMOVE, payload: item })
 
-    cont content = (
+    const content = (
         <li>
             <img
                 className="border border-gray-200 rounded-lg rounded-b-none shadow"
                 src={item.image}
                 alt={item.name}
             />
+            <div>
+                {item.name}
+            </div>
+            <div>
+                {formatCurrency(item.price)}
+            </div>
+            <label htmlFor="itemQty">Item Quantity</label>
+            <select name="itemQty" id="itemQty"
+                value={item.qty}
+                aria-label="Item Quantity"
+                onChange={onChange}
+            >
+                {options}
+            </select>
+            <div aria-label="Line Item SubTotal">
+                {formatCurrency(lineTotal)}
+            </div>
         </li>
     )
-    return (
-        <div className="mt-10 px-4 sm:mt-16 sm:px-0 lg:mt-0">
-            <h1 className="text-3xl font-bold tracking-tight">{item.name}</h1>
-
-
-        </div>
-    )
+    return content
 }
 
 export default CartLineItem

@@ -99,6 +99,7 @@ const reducer = (state: CartStateType, action: ReducerAction): CartStateType => 
             return { ...state, cart: [...filteredCart, updatedItem] }
         }
 
+
         case REDUCER_ACTION_TYPE.REMOVE: {
             if (!action.payload) {
                 throw new Error("action.payload missing in REMOVE action")
@@ -118,7 +119,6 @@ const reducer = (state: CartStateType, action: ReducerAction): CartStateType => 
         }
         default:
             throw new Error("Unidentified Reducer action type")
-
     }
 }
 
