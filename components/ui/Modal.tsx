@@ -4,20 +4,35 @@ import { Dispatch, SetStateAction, useState } from "react"
 import { Button } from "./Button"
 import SizeGuide from "./SizeGuide"
 import useCart from "@/hooks/useCart"
+import { CartItemType } from "@/context/CartProvider"
 
 type PropsType = {
     isOpen: boolean,
     setIsOpen: Dispatch<SetStateAction<boolean>>,
-    product: InventoryType
+    product: CartItemType
 }
 
 const Modal = ({ isOpen, setIsOpen, product }: PropsType) => {
     const items: InventoryType | undefined = inventory.find(item => item.id === product.id);
-    const { name, description, price, sizes, colors } = items
+    const { name, description, price, sizes, colors, qty } = items
     const [selectSize, setSelectedSize] = useState<string>(sizes[0])
     const [selectColor, setSelectedColor] = useState<string>(colors[0])
+    const [itemQuantity, setItemQuantity] = useState<number>(qty)
     const { dispatch, REDUCER_ACTIONS, cart } = useCart()
 
+    const addTCart = () => {
+        dispatch({
+            type: REDUCER_ACTIONS.ADD, payload:
+            {
+                ...product,
+                sizes: selectSize,
+                colors: selectColor,
+                qty: itemQuantity
+            }
+        })
+        setIsOpen(false)
+    }
+    console.log(itemQuantity);
 
 
     return (
@@ -80,13 +95,28 @@ const Modal = ({ isOpen, setIsOpen, product }: PropsType) => {
 
                     </div>
                     <div >
-                        <SizeGuide />
+                        {/* <SizeGuide /> */}
                     </div>
-                    <div className="border-t-[2px] border-gray-500 flex justify-around p-4 space-x-2 pt-4">
-                        <button className="w-1/2 bg-blue-500 py-4 text-base font-medium text-white hover:bg-blue-500 focus:outline-none focus:ring-2 focus:none outline-none">
-                            get more
-                        </button>
-                        <button className="w-1/2 bg-black py-3 text-sm font-medium  text-smtext-white focus:outline-none focus:ring-2 focus:none outline-none">
+                    <div className="border-t-[2px] border-gray-500  p-4 pt-4">
+                        <label htmlFor={`quantity-${product.id}`} className="sr-only">
+                            Quantity, {product.name}
+                        </label>
+                        <input
+                            id={`quantity-${product.id}`}
+                            name={`quantity-${product.id}`}
+                            type="number"
+                            className="w-16 text-black text-center outline-none h-11"
+                            min={1}
+                            max={10}
+                            value={itemQuantity}
+                            placeholder="1"
+                            onChange={event => setItemQuantity(
+                                Number(event.target.value))}
+                        />
+
+                        <button
+                            onClick={addTCart}
+                            className="w-1/2 h-11 bg-black py-3 text-sm font-medium  text-smtext-white focus:outline-none focus:ring-2 focus:none outline-none">
                             ADD TO CART
                         </button>
 
