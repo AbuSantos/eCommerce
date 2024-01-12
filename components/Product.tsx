@@ -5,7 +5,7 @@ import "@/style/style.module.css"
 import Link from "next/link";
 import { formatCurrency } from "@/utils/util";
 import Modal from "./ui/Modal";
-import StyleGuide from "./ui/StyleGuide";
+import SideCart from "./SideCart";
 
 
 type PropsType = {
@@ -39,14 +39,14 @@ const Product = ({ product, dispatch, inCart, REDUCER_ACTIONS }: PropsType): Rea
         }
     }, [inCart]);
 
-    const modalOpen = () => {
-        setIsOpen((prev) => !prev);
-    }
+  
     const content = (
         <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
             <div>
                 {isOpen && <Modal product={product} isOpen={isOpen} setIsOpen={setIsOpen} />}
             </div>
+
+            {/* <SideCart /> */}
             <Link href={`/product/${product.id}/`}>
                 <img
                     className="border border-gray-200 rounded-lg rounded-b-none shadow"

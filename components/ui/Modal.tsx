@@ -1,6 +1,6 @@
 import { InventoryType, inventory } from "@/data/inventory"
 import { getSizeName } from "@/utils/util"
-import { Dispatch, SetStateAction, useState } from "react"
+import { ChangeEvent, Dispatch, SetStateAction, useState } from "react"
 import { Button } from "./Button"
 import SizeGuide from "./SizeGuide"
 import useCart from "@/hooks/useCart"
@@ -13,7 +13,7 @@ type PropsType = {
 }
 
 const Modal = ({ isOpen, setIsOpen, product }: PropsType) => {
-    const items: InventoryType | undefined = inventory.find(item => item.id === product.id);
+    const items = inventory.find(item => item.id === product.id);
     const { name, description, price, sizes, colors, qty } = items
     const [selectSize, setSelectedSize] = useState<string>(sizes[0])
     const [selectColor, setSelectedColor] = useState<string>(colors[0])
@@ -21,18 +21,26 @@ const Modal = ({ isOpen, setIsOpen, product }: PropsType) => {
     const { dispatch, REDUCER_ACTIONS, cart } = useCart()
 
     const addTCart = () => {
+        console.log('Before dispatch:', itemQuantity, product.qty)
         dispatch({
             type: REDUCER_ACTIONS.ADD, payload:
             {
                 ...product,
                 sizes: selectSize,
                 colors: selectColor,
-                qty: itemQuantity
             }
         })
         setIsOpen(false)
     }
-    console.log(itemQuantity);
+
+    const onChangeQty = (e: ChangeEvent<HTMLInputElement>) => {
+        dispatch({
+            type: REDUCER_ACTIONS.QUANTITY, payload:
+            {
+                ...product, qty: Number(e.target.value)
+            }
+        })
+    }
 
 
     return (
@@ -110,8 +118,7 @@ const Modal = ({ isOpen, setIsOpen, product }: PropsType) => {
                             max={10}
                             value={itemQuantity}
                             placeholder="1"
-                            onChange={event => setItemQuantity(
-                                Number(event.target.value))}
+                            onChange={onChangeQty}
                         />
 
                         <button

@@ -10,7 +10,6 @@ const Cart = () => {
     const onSubmitOrder = () => {
         dispatch({ type: REDUCER_ACTIONS.SUBMIT })
         setConfirmed(true)
-        console.log(cart);
 
     }
 
