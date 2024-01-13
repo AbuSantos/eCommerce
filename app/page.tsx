@@ -8,13 +8,17 @@ import Image from 'next/image'
 import { useState } from 'react'
 
 export default function Home() {
-
+  const toggleSideCart = () => {
+    setIsOpen(!isOpen);
+  };
   const [viewCart, setViewCart] = useState<boolean>(false)
+  const [isOpen, setIsOpen] = useState<boolean>(false)
 
 
   return (
     <>
-      <Header viewCart={viewCart} setViewCart={setViewCart} />
+      <Header isOpen={isOpen} setIsOpen={setIsOpen} />
+      <SideCart isOpen={isOpen} setIsOpen={setIsOpen} />
       <ProductList />
     </>
   )

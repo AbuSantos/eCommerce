@@ -22,7 +22,6 @@ const ProductList = () => {
                         REDUCER_ACTIONS={REDUCER_ACTIONS}
                         inCart={inCart}
                     />
-                    {/* <SideCart /> */}
                 </>
             )
         })

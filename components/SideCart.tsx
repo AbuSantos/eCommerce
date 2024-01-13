@@ -1,12 +1,15 @@
 import useCart from '@/hooks/useCart';
-import React, { useState } from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 import CartLineItem from './CartLineItem';
 import { useRouter } from 'next/navigation';
 import { Button } from './ui/Button';
 
-const SideCart = () => {
+type PropsType = {
+    isOpen: boolean,
+    setIsOpen: Dispatch<SetStateAction<boolean>>
+}
+const SideCart = ({ isOpen, setIsOpen }: PropsType) => {
     const { dispatch, REDUCER_ACTIONS, totalItems, totalPrice, cart } = useCart();
-    const [isOpen, setIsOpen] = useState(false);
     const route = useRouter();
 
     const toggleSideCart = () => {
@@ -15,21 +18,13 @@ const SideCart = () => {
 
     return (
         <>
-            <button onClick={toggleSideCart}>Toggle SideCart</button>
             <div className="relative">
-                {isOpen && (
-                    <div
-                        className="fixed top-0 right-0 bottom-0 left-0 bg-black bg-opacity-60 z-50"
-                        onClick={toggleSideCart}
-                    ></div>
-                )}
-
                 <div
                     className={`fixed top-0 right-0 bottom-0 min-h-screen h-full w-[23rem] bg-white transition-transform ease-in-out transform ${isOpen ? 'translate-x-0' : 'translate-x-full'
                         } text-black p-3 flex flex-col z-50`}
                 >
                     <button
-                        onClick={toggleSideCart}
+                        onClick={() => setIsOpen(false)}
                         className={`absolute top-3 -left-5 rounded-full w-12 h-12 cursor-pointer bg-white border border-gray-200 flex justify-center items-center hover:bg-gray-900 hover:border-gray-900 hover:text-gray-200 
                         ${isOpen ? 'opacity-100' : 'opacity-0'
                             } transition-opacity duration-300 ease-in-out`}
@@ -74,6 +69,7 @@ const SideCart = () => {
                                 <p className='font-bold '>Total</p>
                                 <p>{totalPrice}</p>
                             </div>
+
                             <div className='space-y-2'>
                                 <Button variant="buy">CHECKOUT</Button>
                                 <Button variant="basket">VIEW CART</Button>

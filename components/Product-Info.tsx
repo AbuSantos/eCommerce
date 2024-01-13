@@ -10,7 +10,7 @@ import { CartItemType } from "@/context/CartProvider"
 // import { useToast } from "@/components/ui/use-toast"
 
 interface PropsType {
-    product: InventoryType | undefined
+    product: CartItemType | undefined
 }
 
 export function ProductInfo({ product }: PropsType) {
