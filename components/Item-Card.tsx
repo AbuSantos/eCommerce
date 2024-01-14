@@ -8,6 +8,39 @@ interface Props {
 }
 
 export function ProductGallery({ product }: Props) {
+    const zoomIn = (event: React.MouseEvent<HTMLDivElement>) => {
+        // Get the image container and the product image
+        const container = event.currentTarget;
+        const img = container.querySelector('.main-image') as HTMLImageElement;
+
+        // Calculate mouse position relative to the container
+        const containerRect = container.getBoundingClientRect();
+        const x = (event.clientX - containerRect.left) / containerRect.width;
+        const y = (event.clientY - containerRect.top) / containerRect.height;
+
+        // Set the scale factor for zooming
+        const scale = 2; // Adjust the scale factor as needed
+
+        container.style.height = "95%"
+        container.style.width = "370px"
+        container.style.overflow = "hidden"
+        container.style.cursor = "pointer"
+
+        // Adjust transform origin and apply zoom effect
+        img.style.transformOrigin = `${x * 100}% ${y * 100}%`;
+        img.style.transform = `scale(${scale})`;
+        img.style.transition = "transform 0.6s ease-in-out"
+
+    };
+
+    const resetZoom = (event: React.MouseEvent<HTMLDivElement>) => {
+        // Get the product image
+        const img = event.currentTarget.querySelector('.main-image') as HTMLImageElement;
+
+        // Reset transform origin and zoom to normal state
+        img.style.transformOrigin = '50% 50%';
+        img.style.transform = 'scale(1)';
+    };
     const [selectedImage, setSelectedImage] = useState(0)
     return (
         <div className="flex flex-col-reverse">
@@ -37,11 +70,11 @@ export function ProductGallery({ product }: Props) {
             </div>
 
             {/* Main Image */}
-            <div className="aspect-h-1 aspect-w-1 w-full">
+            <div className="aspect-h-1 aspect-w-1 w-full" onMouseMove={(event) => zoomIn(event)} onMouseLeave={(event) => resetZoom(event)} >
                 <img
                     src={product?.images[selectedImage]}
                     alt={`main ${product?.name} image`}
-                    className=" border-2 border-gray-200 object-cover object-center shadow-sm dark:border-gray-800 sm:rounded-lg w-[370px] h-[450px]"
+                    className=" object-cover object-center shadow-sm dark:border-gray-800 w-[370px] h-[450px] main-image"
                 />
             </div>
         </div>

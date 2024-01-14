@@ -21,6 +21,7 @@ export default function RootLayout({
       <CartProvider>
         <ProductProvider>
           <body className={inter.className}>
+
             {children}
             <Footer />
           </body>

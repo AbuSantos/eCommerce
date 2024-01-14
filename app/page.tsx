@@ -11,7 +11,6 @@ export default function Home() {
   const toggleSideCart = () => {
     setIsOpen(!isOpen);
   };
-  const [viewCart, setViewCart] = useState<boolean>(false)
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
 
