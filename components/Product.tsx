@@ -16,15 +16,14 @@ type PropsType = {
 }
 
 const Product = ({ product, dispatch, inCart, REDUCER_ACTIONS }: PropsType): ReactElement => {
-
-    const [added, setAdded] = useState<String>('Add to Cart')
-    const [isOpen, setIsOpen] = useState<boolean>(false)
+    const [added, setAdded] = useState<String>('Add to Cart');
+    const [isOpen, setIsOpen] = useState<boolean>(false);
 
     const addToCart = () => dispatch({
         type: REDUCER_ACTIONS.ADD, payload: {
             ...product, qty: 1
         }
-    })
+    });
 
     useEffect(() => {
         // Update the added state when inCart changes
@@ -41,7 +40,7 @@ const Product = ({ product, dispatch, inCart, REDUCER_ACTIONS }: PropsType): Rea
     }, [inCart]);
 
     const content = (
-        <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <div className="w-full max-w-sm relative overflow-hidden">
             <div>
                 {isOpen &&
                     <Modal
@@ -53,11 +52,13 @@ const Product = ({ product, dispatch, inCart, REDUCER_ACTIONS }: PropsType): Rea
             </div>
 
             <Link href={`/product/${product.id}/`}>
-                <img
-                    className="border border-gray-200 rounded-lg rounded-b-none shadow"
-                    src={product.image}
-                    alt={product.name}
-                />
+                <div className="image-container">
+                    <img
+                        className=" product-img"
+                        src={product.image}
+                        alt={product.name}
+                    />
+                </div>
             </Link>
 
             <div className="px-5 pb-5">
@@ -67,13 +68,12 @@ const Product = ({ product, dispatch, inCart, REDUCER_ACTIONS }: PropsType): Rea
 
                 <div className="flex items-center justify-between">
                     <span className="text-xl font-bold text-gray-900 dark:text-white"> {formatCurrency(product.price)}</span>
-                    <button onClick={() => setIsOpen((prev) => !prev)} className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">{added}</button>
                 </div>
             </div>
-        </div >
-    )
+        </div>
+    );
 
-    return content
-}
+    return content;
+};
 
-export default Product
+export default Product;
