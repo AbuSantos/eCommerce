@@ -72,7 +72,7 @@ const SideCart = ({ isOpen, setIsOpen }: PropsType) => {
 
                             <div className='space-y-2'>
                                 <Button variant="buy">CHECKOUT</Button>
-                                <Button variant="basket">VIEW CART</Button>
+                                <Button variant="basket" onClick={() => route.push("/cart")} >VIEW CART</Button>
                             </div>
                         </div>
                     )}

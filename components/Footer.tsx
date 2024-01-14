@@ -4,7 +4,7 @@ const Footer = () => {
 
     return (
         <>
-            <p>Shopping Cart: &copy; {year} </p>
+            <p className="absolute bottom-0">Shopping Cart: &copy; {year} </p>
         </>
     )
 }
