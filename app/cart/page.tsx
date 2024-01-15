@@ -6,11 +6,16 @@ import { ReducerActionType } from "@/context/CartProvider"
 import { formatCurrency } from "@/utils/util"
 import { ChangeEvent, Dispatch, ReactElement, useState } from "react"
 import useCart from '@/hooks/useCart'
+import { Button } from '@/components/ui/Button'
+import BreadCrumps from '@/components/ui/BreadCrumps'
+import { useRouter, useSearchParams, usePathname } from 'next/navigation'
 
 const Cart = () => {
+    const router = usePathname()
+    const isCartPage = router.includes('/cart');
+    console.log(isCartPage);
 
     const { dispatch, REDUCER_ACTIONS, totalItems, totalPrice, cart } = useCart()
-    console.log(cart);
     // const optionValues: number[] = [...Array(highestQty).keys()].map(i => i + 1)
     // const options: ReactElement[] = optionValues.map(val => {
     //     return (
@@ -21,29 +26,7 @@ const Cart = () => {
     return (
         <div>
 
-            <div className="breadcrump flex justify-between items-center m-auto w-8/12 cursor-pointer mt-14  ">
-                <div className="shopping-cart flex items-center space-x-2 ">
-                    <h1 className='font-medium text-7xl'>I</h1>
-                    <div >
-                        <h3 className='font-semibold'>CART</h3>
-                        <p className='text-gray-400'>Manage your Items List</p>
-                    </div>
-                </div>
-                <div className="checkout-details flex items-center space-x-2 ">
-                    <h1 className='font-medium text-7xl' >II</h1>
-                    <div>
-                        <h3 className='font-semibold'>CHECKOUT DETAILS</h3>
-                        <p>Manage payment details and Shipping Address</p>
-                    </div>
-                </div>
-                <div className="order-complete flex items-center space-x-2 ">
-                    <h1 className='font-medium text-7xl'>III</h1>
-                    <div>
-                        <h3 className='font-semibold'>ORDER COMPLETE</h3>
-                        <p>Manage your Items List</p>
-                    </div>
-                </div>
-            </div>
+            <BreadCrumps isCartPage={isCartPage} />
 
             <div className='grid grid-cols-3 w-8/12 m-auto space-x-8 mt-20'>
                 <div className="product flex space-x-10 justify-between col-span-2 ">
@@ -68,7 +51,7 @@ const Cart = () => {
                                     <tr key={item.id} className='border-b-2 border-gray-500 border-opacity-90 '>
 
                                         <td className='p-5'>
-                                            <div className='flex w-64  items-center space-x-2'>
+                                            <div className='flex w-80  items-center space-x-2'>
                                                 <button className=' hover:bg-slate-800  h-5 w-5 rounded-full' onClick={() => dispatch({
                                                     type: REDUCER_ACTIONS.REMOVE, payload: item
                                                 })}>
@@ -82,8 +65,9 @@ const Cart = () => {
                                                     alt={item.name}
                                                 />
                                                 <div>
-                                                    <p>{item.colors}</p>
-                                                    <p>{item.sizes}</p>
+                                                    <p className='text-sm text-gray-400'>{item.name}</p>
+                                                    <p className='text-sm text-gray-400'>{item.colors}</p>
+                                                    <p className='text-sm text-gray-400'>{item.sizes}</p>
                                                 </div>
                                             </div>
                                         </td>
@@ -109,7 +93,27 @@ const Cart = () => {
                     </table>
 
                 </div>
-                <div className="cart-basket bg-red-700">basket</div>
+                <div className="cart-basket ">
+                    <h2>CART TOTALS</h2>
+                    <div>
+                        {
+                            cart.length > 0 && cart.map((item, index) => (
+                                <div>
+                                    <div key={index} className='flex justify-between items-center border-b-2 border-gray-600 border:opacity-50 p-4'>
+                                        <p>Subtotal</p>
+                                        <p>
+                                            {formatCurrency(item.price * item.qty)}
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <p>VAT(7.5%)</p>
+                                    </div>
+                                </div>
+                            ))
+                        }
+                        <Button variant="buy">Checkout</Button>
+                    </div>
+                </div>
             </div>
 
         </div>

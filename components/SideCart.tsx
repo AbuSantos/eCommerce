@@ -3,6 +3,7 @@ import React, { Dispatch, SetStateAction, useState } from 'react';
 import CartLineItem from './CartLineItem';
 import { useRouter } from 'next/navigation';
 import { Button } from './ui/Button';
+import Link from 'next/link';
 
 type PropsType = {
     isOpen: boolean,
@@ -71,7 +72,7 @@ const SideCart = ({ isOpen, setIsOpen }: PropsType) => {
                             </div>
 
                             <div className='space-y-2'>
-                                <Button variant="buy">CHECKOUT</Button>
+                                <Button variant="buy" onClick={() => route.push("/checkout")}>CHECKOUT</Button>
                                 <Button variant="basket" onClick={() => route.push("/cart")} >VIEW CART</Button>
                             </div>
                         </div>

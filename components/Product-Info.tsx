@@ -51,7 +51,7 @@ export function ProductInfo({ product }: PropsType) {
     const onDelete = () => dispatch({ type: REDUCER_ACTIONS.REMOVE, payload: product })
 
     return (
-        <div className="mt-10 px-4 sm:mt-16 sm:px-0 lg:mt-0">
+        <div className="mt-10 px-4 sm:mt-16 sm:px-0 lg:mt-0 space-y-7">
             <h1 className="text-3xl font-bold tracking-tight">{name}</h1>
 
             <div className="mt-3">
@@ -116,11 +116,11 @@ export function ProductInfo({ product }: PropsType) {
                         type="button"
                         className="w-72 bg-gray-900 h-16 text-base font-medium text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-black"
                     >
-                        Add to cart
+                        ADD TO CART
                     </button>
                 </div>
-                <button onClick={onDelete} className="w-20 text-center outline-none text-gray-100 text-base h-16 bg-red-800">
-                    clear
+                <button onClick={onDelete} className="w-20 text-center outline-none text-gray-200 text-base h-16 bg-red-800">
+                    CLEAR
                 </button>
             </form>
 
