@@ -30,3 +30,9 @@ export const formatCurrency = (value: any) => {
 
   return currency;
 };
+
+export const formatVAT = (totalPrice: any): number => {
+  const vatPercentage = 7.5 / 100;
+  const vatAmount = vatPercentage * totalPrice;
+  return parseFloat(vatAmount.toFixed(2));
+};

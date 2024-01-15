@@ -3,19 +3,23 @@ import React from 'react'
 import { CartItemType } from "@/context/CartProvider"
 import { ReducerAction } from "@/context/CartProvider"
 import { ReducerActionType } from "@/context/CartProvider"
-import { formatCurrency } from "@/utils/util"
+import { formatCurrency, formatVAT } from "@/utils/util"
 import { ChangeEvent, Dispatch, ReactElement, useState } from "react"
 import useCart from '@/hooks/useCart'
 import { Button } from '@/components/ui/Button'
 import BreadCrumps from '@/components/ui/BreadCrumps'
-import { useRouter, useSearchParams, usePathname } from 'next/navigation'
+import { useRouter, usePathname } from 'next/navigation'
+import Link from 'next/link'
+import payment from "@/public/payment.svg"
 
 const Cart = () => {
     const router = usePathname()
     const isCartPage = router.includes('/cart');
     console.log(isCartPage);
 
-    const { dispatch, REDUCER_ACTIONS, totalItems, totalPrice, cart } = useCart()
+    const { dispatch, REDUCER_ACTIONS, totalItems, totalPrice, totalPriceNumber, cart } = useCart()
+    console.log(totalPrice);
+
     // const optionValues: number[] = [...Array(highestQty).keys()].map(i => i + 1)
     // const options: ReactElement[] = optionValues.map(val => {
     //     return (
@@ -52,7 +56,7 @@ const Cart = () => {
 
                                         <td className='p-5'>
                                             <div className='flex w-80  items-center space-x-2'>
-                                                <button className=' hover:bg-slate-800  h-5 w-5 rounded-full' onClick={() => dispatch({
+                                                <button className=' hover:bg-slate-800  h-10 w-10 rounded-full flex items-center justify-center' onClick={() => dispatch({
                                                     type: REDUCER_ACTIONS.REMOVE, payload: item
                                                 })}>
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" fill="none">
@@ -93,25 +97,41 @@ const Cart = () => {
                     </table>
 
                 </div>
-                <div className="cart-basket ">
-                    <h2>CART TOTALS</h2>
-                    <div>
-                        {
-                            cart.length > 0 && cart.map((item, index) => (
-                                <div>
-                                    <div key={index} className='flex justify-between items-center border-b-2 border-gray-600 border:opacity-50 p-4'>
-                                        <p>Subtotal</p>
-                                        <p>
-                                            {formatCurrency(item.price * item.qty)}
-                                        </p>
-                                    </div>
-                                    <div>
-                                        <p>VAT(7.5%)</p>
-                                    </div>
-                                </div>
-                            ))
-                        }
-                        <Button variant="buy">Checkout</Button>
+                <div className="cart-basket  w-full">
+                    <h2 className='mb-8'>CART TOTALS</h2>
+                    <div className=' w-full'>
+
+
+                        <div className='flex justify-between items-center border-b-2 border-gray-600 border:opacity-50 p-4'>
+                            <p>Subtotal</p>
+                            <p>
+                                {totalPrice}
+                            </p>
+                        </div>
+
+
+
+                        <div className='flex justify-between items-center border-b-2 border-gray-600 border:opacity-50 p-4'>
+                            <p>VAT(7.5%)</p>
+
+                            <p>{formatCurrency(formatVAT(totalPriceNumber))}</p>
+                        </div>
+                        <div className='flex justify-between items-center border-b-2 border-gray-600 border:opacity-50 p-4'>
+                            <p>Total</p>
+
+                            <p>{formatCurrency(formatVAT(totalPriceNumber) + totalPriceNumber)}</p>
+                        </div>
+                        <div className='w-full bg-gray-900  flex items-center justify-center'>
+                            <Link
+                                className="p-4 w-full text-center"
+                                href="/checkout"
+                            >
+                                {/* <img src={payment} alt="payment" /> */}
+                                PAY NOW
+                            </Link>
+                        </div>
+
+
                     </div>
                 </div>
             </div>
