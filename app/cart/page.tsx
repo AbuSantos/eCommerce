@@ -11,6 +11,7 @@ import BreadCrumps from '@/components/ui/BreadCrumps'
 import { useRouter, usePathname } from 'next/navigation'
 import Link from 'next/link'
 import payment from "@/public/payment.svg"
+import CartTotal from '@/components/CartTotal'
 
 const Cart = () => {
     const router = usePathname()
@@ -100,27 +101,7 @@ const Cart = () => {
                 <div className="cart-basket  w-full">
                     <h2 className='mb-8'>CART TOTALS</h2>
                     <div className=' w-full'>
-
-
-                        <div className='flex justify-between items-center border-b-2 border-gray-600 border:opacity-50 p-4'>
-                            <p>Subtotal</p>
-                            <p>
-                                {totalPrice}
-                            </p>
-                        </div>
-
-
-
-                        <div className='flex justify-between items-center border-b-2 border-gray-600 border:opacity-50 p-4'>
-                            <p>VAT(7.5%)</p>
-
-                            <p>{formatCurrency(formatVAT(totalPriceNumber))}</p>
-                        </div>
-                        <div className='flex justify-between items-center border-b-2 border-gray-600 border:opacity-50 p-4'>
-                            <p>Total</p>
-
-                            <p>{formatCurrency(formatVAT(totalPriceNumber) + totalPriceNumber)}</p>
-                        </div>
+                        <CartTotal />
                         <div className='w-full bg-gray-900  flex items-center justify-center'>
                             <Link
                                 className="p-4 w-full text-center"

@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Input } from './ui/Input';
+import { Button } from './ui/Button';
 
 const AddressForm = () => {
     const [formData, setFormData] = useState({
@@ -31,94 +33,79 @@ const AddressForm = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="max-w-lg mx-auto mt-8 text-gray-800 border-4 border-gray-700 p-4">
+        <form onSubmit={handleSubmit} className="max-w-lg mx-auto mt-8  border-4 border-gray-700 border-opacity-30  p-4">
             <h2 className='text-gray-200 font-medium p-4 capitalize border-b-2 mb-4'>Billing Address</h2>
             <div className="grid grid-cols-2 gap-4 mb-3 ">
                 <div>
-                    <input
-                        placeholder=' First Name'
-                        type="text"
-                        id="firstName"
-                        name="firstName"
-                        value={formData.firstName}
-                        onChange={handleChange}
-                        className="w-full p-2 border border-gray-300 focus:outline-none bg-transparent "
-                    />
+
+                    <Input placeholder='First Name' name="firstName" type="text" id="firstName" value={formData.firstName} onChange={handleChange} />
                 </div>
                 <div>
-                    <input
-                        placeholder='Last Name'
-                        type="text"
-                        id="lastName"
-                        name="lastName"
-                        value={formData.lastName}
-                        onChange={handleChange}
-                        className="w-full p-2 border border-gray-300  focus:outline-none bg-transparent"
-                    />
+                    <Input placeholder='Last Name' name="lastName" type="text" id="lastName" value={formData.lastName} onChange={handleChange} />
                 </div>
             </div>
 
             {/* <div className="grid grid-cols-2 gap-4 mt-4"> */}
             <div className=''>
-                <input
+                <Input
                     placeholder='Country'
                     type="text"
                     id="country"
                     name="country"
                     value={formData.country}
                     onChange={handleChange}
-                    className="w-full p-2 border border-gray-300 mb-3 focus:outline-none bg-transparent"
+
                 />
             </div>
             <div>
 
-                <input
+                <Input
                     placeholder='State'
                     type="text"
                     id="state"
                     name="state"
                     value={formData.state}
                     onChange={handleChange}
-                    className="w-full p-2 border border-gray-300 mb-3 focus:outline-none bg-transparent"
+
                 />
             </div>
             <div>
 
-                <input
+                <Input
                     placeholder='Town/City'
                     type="text"
                     id="city"
                     name="city"
                     value={formData.city}
                     onChange={handleChange}
-                    className="w-full p-2 border border-gray-300 mb-3 focus:outline-none bg-transparent"
+
                 />
             </div>
             <div>
-                <input
+                <Input
                     placeholder='Apartment, suite'
                     type="text"
                     id="apartment"
                     name="apartmentNumber"
                     value={formData.apartmentNumber}
                     onChange={handleChange}
-                    className="w-full p-2 border border-gray-300 mb-3 focus:outline-none"
+
                 />
             </div>
             <div>
-                <input
+                <Input
                     placeholder='Street Number'
                     type="text"
                     id="streetNumber"
                     name="streetNumber"
                     value={formData.streetNumber}
                     onChange={handleChange}
-                    className="w-full p-2 border border-gray-300 mb-3 focus:outline-none bg-transparent"
+
                 />
             </div>
             <div className="grid grid-cols-2 gap-4">
                 <div>
-                    <input
+                    <Input
                         placeholder='Phone Number'
                         required
                         type="text"
@@ -126,11 +113,11 @@ const AddressForm = () => {
                         name="phoneNumber"
                         value={formData.phoneNumber}
                         onChange={handleChange}
-                        className="w-full p-2 border border-gray-300 mb-3 focus:outline-none bg-transparent"
+
                     />
                 </div>
                 <div>
-                    <input
+                    <Input
                         placeholder='Email Address'
                         required
                         type="email"
@@ -138,34 +125,30 @@ const AddressForm = () => {
                         name="emailAddress"
                         value={formData.emailAddress}
                         onChange={handleChange}
-                        className="w-full p-2 border border-gray-300 mb-3 focus:outline-none bg-transparent"
+
                     />
                 </div>
             </div>
-            {/* </div> */}
 
             <div className="grid grid-cols-2 gap-4 mt-4">
-                {/* Add other fields for street number, apartment number, etc. */}
-                {/* ... */}
 
-                {/* Extra information */}
                 <div className="col-span-2">
                     <textarea
                         Extra Information
-                        placeholder=''
+                        placeholder='Extra Information'
                         id="extraInformation"
                         name="extraInformation"
                         value={formData.extraInformation}
                         onChange={handleChange}
                         rows="3"
-                        className="w-full p-2 border border-gray-300 rounded focus:outline-none bg-transparent"
+                        className="w-full p-2 border border-gray-700 border-opacity-40 rounded  focus:outline-none bg-transparent"
                     />
                 </div>
             </div>
 
-            <button type="submit" className="mt-4 w-full bg-blue-500 text-white py-2 px-4 rounded">
+            <Button variant="buy">
                 Submit
-            </button>
+            </Button>
         </form>
     );
 };
