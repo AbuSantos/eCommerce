@@ -34,7 +34,7 @@ const AddressForm = () => {
 
     return (
         <form onSubmit={handleSubmit} className="max-w-lg mx-auto mt-8  border-4 border-gray-700 border-opacity-30  p-4">
-            <h2 className='text-gray-200 font-medium p-4 capitalize border-b-2 mb-4'>Billing Address</h2>
+            <h2 className='text-gray-200 font-medium p-4 border-b-2 mb-4 '>DELIVERY ADDRESS</h2>
             <div className="grid grid-cols-2 gap-4 mb-3 ">
                 <div>
 

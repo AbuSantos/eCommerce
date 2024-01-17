@@ -1,10 +1,10 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { NextResponse } from "next/server";
+// import { Response } from "next/server";
 
-export async function POST(req: NextApiRequest, res: NextApiResponse) {
+export async function POST(req, res) {
   if (req.method === "POST") {
-    const { amount, email } = req.body;
-
+    const { amount, email } = await req.json();
+    // console.log(amount, email);
     try {
       // Make a request to Paystack to create a payment session using fetch
       const paystackResponse = await fetch(
@@ -13,25 +13,26 @@ export async function POST(req: NextApiRequest, res: NextApiResponse) {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${process.env.AUTH_KEYs}`,
           },
           body: JSON.stringify({
             email,
             amount: amount * 100,
-            currency: "NGN", // Paystack API expects amount in kobo
+            // currency:"NGN"
           }),
         }
       );
 
       if (paystackResponse.ok) {
         const responseData = await paystackResponse.json();
-        return NextResponse.json({
-          reference: responseData.data.reference,
-          amount: responseData.data.amount,
+        return Response.json({
+          reference: responseData,
+          // amount: responseData.data.amount,
         });
       } else {
         const errorMessage = await paystackResponse.text();
         const errorObject = JSON.parse(errorMessage); // Parse the error message into JSON
-        return NextResponse.json({
+        return Response.json({
           status: paystackResponse.status.toString(),
           error: errorObject,
         });
@@ -44,6 +45,6 @@ export async function POST(req: NextApiRequest, res: NextApiResponse) {
       });
     }
   } else {
-    return NextResponse.json({ status: "405", error: "Method Not Allowed" });
+    return Response.json({ status: "405", error: "Method Not Allowed" });
   }
 }
