@@ -30,7 +30,7 @@ export function ProductInfo({ product }: PropsType) {
                 type: REDUCER_ACTIONS.ADD,
                 payload: {
                     ...product,
-                    sizes: selectSize,
+                    sizes: selectSize ,
                     colors: selectColor
                 }
             }
