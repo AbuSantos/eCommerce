@@ -1,12 +1,12 @@
-import { NextApiRequest, NextApiResponse } from "next";
+// import { NextApiRequest, NextApiResponse } from "next";
 // import { Response } from "next/server";
 
-export async function POST(req, res) {
+export async function POST(req: any) {
   if (req.method === "POST") {
     const { amount, email } = await req.json();
     // console.log(amount, email);
     try {
-      // Make a request to Paystack to create a payment session using fetch
+      // Make a request to Paystack to create a payment session u
       const paystackResponse = await fetch(
         "https://api.paystack.co/transaction/initialize",
         {

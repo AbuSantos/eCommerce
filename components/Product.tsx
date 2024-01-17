@@ -63,11 +63,11 @@ const Product = ({ product, dispatch, inCart, REDUCER_ACTIONS }: PropsType): Rea
 
             <div className="px-5 pb-5">
                 <a href="#">
-                    <h3 className="py-2">{product.name}</h3>
+                    <h3 className="py-2 text-[.7rem] md:text-lg ">{product.name}</h3>
                 </a>
 
                 <div className="flex items-center justify-between">
-                    <span className="text-xl font-bold text-gray-900 dark:text-white"> {formatCurrency(product.price)}</span>
+                    <span className="text-sm md:text-xl sm:text-base font-bold text-gray-900 dark:text-white"> {formatCurrency(product.price)}</span>
                 </div>
             </div>
         </div>
