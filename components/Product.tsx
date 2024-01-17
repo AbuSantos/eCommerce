@@ -61,9 +61,9 @@ const Product = ({ product, dispatch, inCart, REDUCER_ACTIONS }: PropsType): Rea
                 </div>
             </Link>
 
-            <div className="px-5 pb-5">
+            <div className="py-2 pb-3">
                 <a href="#">
-                    <h3 className="py-2 text-[.7rem] md:text-lg ">{product.name}</h3>
+                    <h3 className="text-[.7rem] font-medium md:text-lg ">{product.name}</h3>
                 </a>
 
                 <div className="flex items-center justify-between">

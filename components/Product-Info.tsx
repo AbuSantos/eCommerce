@@ -5,6 +5,8 @@ import useCart from "@/hooks/useCart"
 import { formatCurrency, getSizeName } from "@/utils/util"
 import { Button } from "./ui/Button"
 import { CartItemType } from "@/context/CartProvider"
+import Image from "next/image"
+import shopping from "@/public/shopping.svg"
 
 // import { Button } from "@/components/ui/button"
 // import { useToast } from "@/components/ui/use-toast"
@@ -30,7 +32,7 @@ export function ProductInfo({ product }: PropsType) {
                 type: REDUCER_ACTIONS.ADD,
                 payload: {
                     ...product,
-                    sizes: selectSize ,
+                    sizes: selectSize,
                     colors: selectColor
                 }
             }
@@ -51,20 +53,19 @@ export function ProductInfo({ product }: PropsType) {
     const onDelete = () => dispatch({ type: REDUCER_ACTIONS.REMOVE, payload: product })
 
     return (
-        <div className="mt-10 px-4 sm:mt-16 sm:px-0 lg:mt-0 space-y-7">
-            <h1 className="text-3xl font-bold tracking-tight">{name}</h1>
-
+        <div className="mt-10 px-4 sm:mt-16 sm:px-0 lg:mt-0 space-y-2 md:space-y-4 lg:space-y-7">
+            <h1 className=" text-xl  md:text-3xl font-bold tracking-tight text-blue-300">{name}</h1>
             <div className="mt-3">
                 <h2 className="sr-only">Product information</h2>
-                <p className="text-3xl tracking-tight">{formatCurrency(price)}</p>
+                <p className="text-xl md:text-3xl font-semibold tracking-tight">{formatCurrency(price)}</p>
             </div>
 
             <div className="mt-6">
-                <h3 className="sr-only">Description</h3>
-                <div className="space-y-6 text-base">{description}</div>
+                <h3 className="sr-only text-gray-300">Description</h3>
+                <div className="space-y-6 text-base text-gray-300">{description}</div>
             </div>
 
-            <div className="flex space-x-5">
+            <div className="md:flex md:space-x-5 ">
                 <div className="mt-4">
                     <p >
                         Size: <strong>{getSizeName(selectSize)}</strong>
@@ -80,7 +81,7 @@ export function ProductInfo({ product }: PropsType) {
                         </Button>
                     ))}
                 </div>
-                <div className="mt-4">
+                <div className="mt-4 mb-4">
                     <p>
                         Color: <strong>{(selectColor)}</strong>
                     </p>
@@ -90,14 +91,14 @@ export function ProductInfo({ product }: PropsType) {
                                 setSelectedColor(color)
                             }}
                             variant={selectColor === color ? "outline" : "default"}
-                            key={color} className="mr-2 mt-4">
+                            key={color} className="mt-4">
                             {color?.toUpperCase()}
                         </Button>
                     ))}
                 </div>
             </div>
 
-            <form className="flex items-center justify-center space-x-3 mt-4" >
+            <form className="flex items-center justify-center space-x-2 md:space-x-3 mt-4" >
                 <input
                     id={`quantity-${product?.id}`}
                     name={`quantity-${product?.id}`}
@@ -114,12 +115,13 @@ export function ProductInfo({ product }: PropsType) {
                     <button
                         onClick={addToCart}
                         type="button"
-                        className="w-72 bg-gray-900 h-16 text-base font-medium text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-black"
+                        className="w-52 md:w-72 text-sm bg-gray-900 h-16 md:text-base font-medium text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-black flex items-center  justify-center"
                     >
                         ADD TO CART
+                        <Image src={shopping} width={24} alt="shopping cart" className="ml-3" />
                     </button>
                 </div>
-                <button onClick={onDelete} className="w-20 text-center outline-none text-gray-200 text-base h-16 bg-red-800">
+                <button onClick={onDelete} className="w-20 text-center outline-none font-semibold text-gray-200 md:text-base text-[0.8rem] h-16 bg-red-800">
                     CLEAR
                 </button>
             </form>
