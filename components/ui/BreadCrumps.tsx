@@ -9,15 +9,15 @@ type PropsType = {
 const BreadCrumps = ({ isCartPage, isCheckOut }: PropsType) => {
     const router = useRouter()
     return (
-        <div className="breadcrump flex justify-between items-center m-auto w-8/12 cursor-pointer mt-14  ">
-            <div className={`shopping-cart flex items-center space-x-2  ${isCartPage ? 'opacity-100' : "opacity-50"}`} onClick={() => router.push("/cart")}>
+        <div className="breadcrump grid lg:grid-cols-3 justify-between items-center m-auto w-8/12 cursor-pointer mt-14  ">
+            <div className={`shopping-cart flex items-center space-x-2  ${isCartPage ? 'opacity-100  md:flex' : "opacity-50 hidden md:flex"}`} onClick={() => router.push("/cart")}>
                 <h1 className='font-medium text-7xl'>I</h1>
                 <div >
                     <h3 className='font-semibold'>CART</h3>
                     <p className='text-gray-400'>Manage your Items List</p>
                 </div>
             </div>
-            <div className={`checkout-details flex items-center space-x-2 ${isCheckOut ? 'opacity-100' : "opacity-50"}`} onClick={() => router.push("/checkout")}>
+            <div className={`checkout-details flex items-center space-x-2 ${isCheckOut ? 'opacity-100 md:flex' : "opacity-50 hidden md:flex"}`} onClick={() => router.push("/checkout")}>
                 <h1 className='font-medium text-7xl' >II</h1>
                 <div>
                     <h3 className='font-semibold'>CHECKOUT DETAILS</h3>

@@ -28,13 +28,12 @@ const AddressForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Add logic to handle form submission
         console.log('Form submitted:', formData);
     };
 
     return (
         <form onSubmit={handleSubmit} className="max-w-lg mx-auto mt-8  border-4 border-gray-700 border-opacity-30  p-4">
-            <h2 className='text-gray-200 font-medium p-4 border-b-2 mb-4 '>DELIVERY ADDRESS</h2>
+            <h2 className='text-gray-200 font-medium p-4 border-b-2 mb-4 md:text-lg text-sm'>DELIVERY ADDRESS</h2>
             <div className="grid grid-cols-2 gap-4 mb-3 ">
                 <div>
 
@@ -141,7 +140,7 @@ const AddressForm = () => {
                         value={formData.extraInformation}
                         onChange={handleChange}
                         rows="3"
-                        className="w-full p-2 border border-gray-700 border-opacity-40 rounded  focus:outline-none bg-transparent"
+                        className="w-full p-2 border border-gray-700 border-opacity-40 rounded  focus:outline-none bg-transparent text-sm md:text-base"
                     />
                 </div>
             </div>

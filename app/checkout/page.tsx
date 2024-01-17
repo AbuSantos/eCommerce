@@ -22,7 +22,7 @@ const CheckOut = () => {
     return (
         <div>
             < BreadCrumps isCheckOut={isCheckOut} />
-            <div className='grid grid-cols-3  w-8/12 m-auto '>
+            <div className='grid md:grid-cols-3  md:w-8/12 w-11/12 m-auto '>
                 <div className='col-span-2'>
                     <AddressForm />
                 </div>
