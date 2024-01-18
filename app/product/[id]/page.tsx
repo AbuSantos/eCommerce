@@ -1,4 +1,5 @@
 "use client"
+import CategoryProduct from '@/components/CategoryProduct'
 import Header from '@/components/Header'
 import { ProductGallery } from '@/components/Item-Card'
 import { ProductInfo } from '@/components/Product-Info'
@@ -13,8 +14,8 @@ const ProductItem = ({ params }: PropsType) => {
     const product: InventoryType | undefined = inventory.find(item => item.id === params.id)
     //we get the categories of the selected items 
     const categories: string[] = product?.categories || []
-    // then we filter the inventory by the selected category
-    const categoryProducts: InventoryType[] = inventory.filter(item => item.categories.includes(categories[0]))
+    // then we filter the inventory by the selected category, then we ensure the selected product isnt included in the array
+    const categoryProducts: InventoryType[] = inventory.filter(item => item.categories.includes(categories[0]) && product?.id !== item.id)
 
     // console.log(categories);
     // console.log(categoryProducts);
@@ -39,8 +40,9 @@ const ProductItem = ({ params }: PropsType) => {
                     </div>
                 </div>
 
-                <div>
-                    hello
+                <div className='overflow-hidden'>
+                    <h2 className='p-4 text-center capitalize text-xl'>Related products</h2>
+                    <CategoryProduct categoryProducts={categoryProducts} />
                 </div>
             </main>
         </>
