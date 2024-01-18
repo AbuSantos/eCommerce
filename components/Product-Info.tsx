@@ -18,8 +18,8 @@ interface PropsType {
 export function ProductInfo({ product }: PropsType) {
     const { dispatch, REDUCER_ACTIONS, cart } = useCart()
     const { name, description, price, sizes, colors, } = product
-    const [selectSize, setSelectedSize] = useState<string | undefined>(product?.sizes[0])
-    const [selectColor, setSelectedColor] = useState<string | undefined>(product?.colors[0])
+    const [selectSize, setSelectedSize] = useState((sizes?.[0]))
+    const [selectColor, setSelectedColor] = useState<string | undefined>(colors?.[0])
     const [itemQuantity, setItemQuantity] = useState<number | undefined>()
 
     // const { addItem, incrementItem, cartDetails } = useShoppingCart()

@@ -33,15 +33,15 @@ const Cart = () => {
 
             <BreadCrumps isCartPage={isCartPage} />
 
-            <div className='grid grid-cols-3 w-8/12 m-auto space-x-8 mt-20'>
+            <div className='grid lg:grid-cols-3 grid-cols-1 w-8/12 m-auto space-x-8 mt-20'>
                 <div className="product flex space-x-10 justify-between col-span-2 ">
-                    <table className='w-full p-2'>
+                    <table className='md:w-full w-7/12  p-2'>
                         <thead>
                             <tr className='border-b-2 border-gray-500 border-opacity-90 mb-3'>
-                                <th className='w-6/12 text-left'>PRODUCT</th>
-                                <th>PRICE</th>
-                                <th>QUANTITY</th>
-                                <th>SUBTOTAL</th>
+                                <th className='w-6/12 text-left text-sm  md:text-base' >PRODUCT</th>
+                                <th className='text-[0.7rem]  md:text-base'>PRICE</th>
+                                <th className='text-[0.7rem]  md:text-base'>QUANTITY</th>
+                                <th className='text-[0.7rem]  md:text-base'>SUBTOTAL</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -56,7 +56,7 @@ const Cart = () => {
                                     <tr key={item.id} className='border-b-2 border-gray-500 border-opacity-90 '>
 
                                         <td className='p-5'>
-                                            <div className='flex w-80  items-center space-x-2'>
+                                            <div className='md:flex md:w-80 w-32 items-center space-x-2 flex md:flex-col'>
                                                 <button className=' hover:bg-slate-800  h-10 w-10 rounded-full flex items-center justify-center' onClick={() => dispatch({
                                                     type: REDUCER_ACTIONS.REMOVE, payload: item
                                                 })}>
@@ -65,18 +65,20 @@ const Cart = () => {
                                                     </svg>
                                                 </button>
                                                 <img
-                                                    className=" w-24 h-24 shadow"
+                                                    className=" md:w-24 md:h-24 shadow w-20 h-20"
                                                     src={item.image}
                                                     alt={item.name}
                                                 />
                                                 <div>
-                                                    <p className='text-sm text-gray-400'>{item.name}</p>
-                                                    <p className='text-sm text-gray-400'>{item.colors}</p>
-                                                    <p className='text-sm text-gray-400'>{item.sizes}</p>
+                                                    <p className='md:text-sm lg:text-base lg:font-semibold text-[0.7rem] text-gray-400'>{item.name}</p>
+                                                    <div className='flex space-x-2'>
+                                                        <p className='md:text-sm lg:text-base text-[0.7rem] text-gray-400'>{item.colors}</p>
+                                                        <p className='md:text-base text-[0.7rem] capitalize text-gray-400'>{item.sizes}</p>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </td>
-                                        <td>{formatCurrency(item.price)}</td>
+                                        <td className='md:text-lg text-[0.7rem]'>{formatCurrency(item.price)}</td>
                                         <td>
                                             {/* <select name="itemQty" id="itemQty"
                                                 value={item.qty}
@@ -90,7 +92,7 @@ const Cart = () => {
                                                 {options}
                                             </select> */}
                                         </td>
-                                        <td>{formatCurrency(item.price * item.qty)}</td>
+                                        <td className='md:text-lg text-[0.7rem]'>{formatCurrency(item.price * item.qty)}</td>
                                     </tr>
                                 ))
                             )}
@@ -98,7 +100,7 @@ const Cart = () => {
                     </table>
 
                 </div>
-                <div className="cart-basket  w-full">
+                <div className="cart-basket w-full">
                     <h2 className='mb-8'>CART TOTALS</h2>
                     <div className=' w-full'>
                         <CartTotal />
