@@ -98,7 +98,7 @@ export function ProductInfo({ product }: PropsType) {
                 </div>
             </div>
 
-            <form className="flex items-center justify-center space-x-2 md:space-x-3 mt-4" >
+            <form className="flex items-center justify-center space-x-2 md:space-x-3 mt-4 " >
                 <input
                     id={`quantity-${product?.id}`}
                     name={`quantity-${product?.id}`}
@@ -111,11 +111,11 @@ export function ProductInfo({ product }: PropsType) {
                     onChange={event => setItemQuantity(Number(event.target.value))}
                 />
 
-                <div className=" flex flex-1">
+                <div className=" flex flex-1 md:justify-center">
                     <button
                         onClick={addToCart}
                         type="button"
-                        className="w-52 md:w-72 text-sm bg-gray-900 h-16 md:text-base font-medium text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-black flex items-center  justify-center"
+                        className="w-60 md:w-80 lg:w-72 text-sm bg-gray-900 h-16 md:text-base font-medium text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-black flex items-center  justify-center"
                     >
                         ADD TO CART
                         <Image src={shopping} width={24} alt="shopping cart" className="ml-3" />

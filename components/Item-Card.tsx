@@ -19,7 +19,7 @@ export function ProductGallery({ product }: Props) {
         const y = (event.clientY - containerRect.top) / containerRect.height;
 
         // Set the scale factor for zooming
-        const scale = 2; // Adjust the scale factor as needed
+        const scale = 2;
 
         container.style.height = "95%"
         container.style.width = "370px"
@@ -45,13 +45,14 @@ export function ProductGallery({ product }: Props) {
     return (
         <div className="flex flex-col-reverse">
             {/* Image Grid */}
-            <div className="mx-auto mt-6 hidden w-full max-w-2xl sm:block lg:max-w-none">
+            <div className="mx-auto mt-6 w-full max-w-2xl  lg:max-w-none">
                 <ul className="grid grid-cols-4 gap-6">
                     {product?.images.map((image, index) => (
                         <div
                             key={index}
                             onClick={() => setSelectedImage(index)}
-                            className="relative flex h-24 cursor-pointer items-center justify-center rounded-md bg-white text-sm font-medium uppercase hover:bg-gray-50"
+                            className="relative flex h-20 md:h-24 w-full cursor-pointer items-center justify-center rounded-md bg-white text-sm font-medium uppercase hover:bg-gray-50 
+                            md:ml-0 ml-5"
                         >
                             <span className="absolute inset-0 overflow-hidden rounded-md">
                                 <img
@@ -61,7 +62,7 @@ export function ProductGallery({ product }: Props) {
                                 />
                             </span>
                             {index === selectedImage && <span
-                                className="pointer-events-none absolute inset-0 rounded-md ring-4 ring-indigo-500 ring-offset-2"
+                                className="pointer-events-none absolute inset-0 rounded-md ring-4 ring-blue-500 ring-offset-2"
                                 aria-hidden="true"
                             />}
                         </div>
@@ -70,7 +71,7 @@ export function ProductGallery({ product }: Props) {
             </div>
 
             {/* Main Image */}
-            <div className="aspect-h-1 aspect-w-1 w-full" onMouseMove={(event) => zoomIn(event)} onMouseLeave={(event) => resetZoom(event)} >
+            <div className="aspect-h-1 aspect-w-1 w-full ml-4 md:ml-0" onMouseMove={(event) => zoomIn(event)} onMouseLeave={(event) => resetZoom(event)} >
                 <img
                     src={product?.images[selectedImage]}
                     alt={`main ${product?.name} image`}

@@ -34,7 +34,7 @@ const AddressForm = () => {
     return (
         <form onSubmit={handleSubmit} className="max-w-lg mx-auto mt-8  border-4 border-gray-700 border-opacity-30  p-4">
             <h2 className='text-gray-200 font-medium p-4 border-b-2 mb-4 md:text-lg text-sm'>DELIVERY ADDRESS</h2>
-            <div className="grid grid-cols-2 gap-4 mb-3 ">
+            <div className="grid grid-cols-2 gap-2 mb-3 ">
                 <div>
 
                     <Input placeholder='First Name' name="firstName" type="text" id="firstName" value={formData.firstName} onChange={handleChange} />
@@ -102,7 +102,7 @@ const AddressForm = () => {
 
                 />
             </div>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
                 <div>
                     <Input
                         placeholder='Phone Number'
@@ -146,7 +146,7 @@ const AddressForm = () => {
             </div>
 
             <Button variant="buy">
-                Submit
+                SUBMIT
             </Button>
         </form>
     );

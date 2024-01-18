@@ -11,8 +11,15 @@ type PropsType = {
 }
 const ProductItem = ({ params }: PropsType) => {
     const product: InventoryType | undefined = inventory.find(item => item.id === params.id)
-    const [isOpen, setIsOpen] = useState<boolean>(false)
+    //we get the categories of the selected items 
+    const categories: string[] = product?.categories || []
+    // then we filter the inventory by the selected category
+    const categoryProducts: InventoryType[] = inventory.filter(item => item.categories.includes(categories[0]))
 
+    // console.log(categories);
+    // console.log(categoryProducts);
+
+    const [isOpen, setIsOpen] = useState<boolean>(false)
 
 
     return (
@@ -30,6 +37,10 @@ const ProductItem = ({ params }: PropsType) => {
                         {/* Product info */}
                         <ProductInfo product={product} />
                     </div>
+                </div>
+
+                <div>
+                    hello
                 </div>
             </main>
         </>
