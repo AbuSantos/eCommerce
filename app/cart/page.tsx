@@ -21,24 +21,30 @@ const Cart = () => {
     const { dispatch, REDUCER_ACTIONS, totalItems, totalPrice, totalPriceNumber, cart } = useCart()
     console.log(totalPrice);
 
-    // const optionValues: number[] = [...Array(highestQty).keys()].map(i => i + 1)
-    // const options: ReactElement[] = optionValues.map(val => {
-    //     return (
-    //         <option key={`opt${val}`} value={val} >{val}</option>
-    //     )
-    // })
+    const optionValues: number[] = [...Array(highestQty).keys()].map(i => i + 1)
+    const options: ReactElement[] = optionValues.map(val => {
+        return (
+            <option key={`opt${val}`} value={val} >{val}</option>
+        )
+    })
+    const onChange = (e: ChangeEvent<HTMLSelectElement>) => {
+        dispatch({
+            type: REDUCER_ACTIONS.QUANTITY,
+            payload: { ...item, qty: Number(e.target.value) }
+        })
+    }
 
     return (
         <div>
 
             <BreadCrumps isCartPage={isCartPage} />
 
-            <div className='grid lg:grid-cols-3 grid-cols-1 w-8/12 m-auto space-x-8 mt-20'>
-                <div className="product flex space-x-10 justify-between col-span-2 ">
-                    <table className='md:w-full w-7/12  p-2'>
+            <div className='grid lg:grid-cols-3 md:grid-cols-3 grid-cols-1 w-10/12 m-auto space-x-8 mt-20'>
+                <div className="product hidden md:flex space-x-10 justify-between col-span-2 ">
+                    <table className=' w-full p-2'>
                         <thead>
                             <tr className='border-b-2 border-gray-500 border-opacity-90 mb-3'>
-                                <th className='w-6/12 text-left text-sm  md:text-base' >PRODUCT</th>
+                                <th className='text-left text-sm  md:text-base' >PRODUCT</th>
                                 <th className='text-[0.7rem]  md:text-base'>PRICE</th>
                                 <th className='text-[0.7rem]  md:text-base'>QUANTITY</th>
                                 <th className='text-[0.7rem]  md:text-base'>SUBTOTAL</th>
@@ -54,9 +60,8 @@ const Cart = () => {
                             ) : (
                                 cart.map((item, index) => (
                                     <tr key={item.id} className='border-b-2 border-gray-500 border-opacity-90 '>
-
                                         <td className='p-5'>
-                                            <div className='md:flex md:w-80 w-32 items-center space-x-2 flex md:flex-col'>
+                                            <div className='flex items-center space-x-2 '>
                                                 <button className=' hover:bg-slate-800  h-10 w-10 rounded-full flex items-center justify-center' onClick={() => dispatch({
                                                     type: REDUCER_ACTIONS.REMOVE, payload: item
                                                 })}>
@@ -71,7 +76,7 @@ const Cart = () => {
                                                 />
                                                 <div>
                                                     <p className='md:text-sm lg:text-base lg:font-semibold text-[0.7rem] text-gray-400'>{item.name}</p>
-                                                    <div className='flex space-x-2'>
+                                                    <div className='space-x-2'>
                                                         <p className='md:text-sm lg:text-base text-[0.7rem] text-gray-400'>{item.colors}</p>
                                                         <p className='md:text-base text-[0.7rem] capitalize text-gray-400'>{item.sizes}</p>
                                                     </div>
@@ -99,6 +104,50 @@ const Cart = () => {
                         </tbody>
                     </table>
 
+                </div>
+                <div className="mobile">
+                    <div className='mb-8'>
+                        {
+                            cart.map((item) => (
+                                <div className='flex space-x-7'>
+                                    <div className="flex space-x-3">
+                                        <button onClick={() => dispatch({ type: REDUCER_ACTIONS.REMOVE, payload: item })}>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="" viewBox="0 0 24 24" style={{ fill: "#df0707", transform: "msFilter" }}><path d="M7.874 12h8v2h-8z"></path></svg>
+                                        </button>
+                                        <img
+                                            className=" w-20 h-20 shadow"
+                                            src={item.image}
+                                            alt={item.name}
+                                        />
+                                    </div>
+                                    <div>
+                                        <p className="font-bold">
+                                            {item.name}
+                                        </p>
+                                        <div className="text-[0.75rem] w-[10rem] text-gray-500 p-2">
+                                            {formatCurrency(item.price)}
+
+                                            <select name="itemQty" id="itemQty"
+                                                value={item.qty}
+                                                aria-label="Item Quantity"
+                                                onChange={(e) => dispatch({
+                                                    type: REDUCER_ACTIONS.QUANTITY,
+                                                    payload: { ...item, qty: Number(e.target.value) }
+                                                })}
+                                                className="ml-5"
+                                            >
+                                                {options}
+                                            </select>
+                                        </div>
+                                        <div aria-label="Line Item SubTotal">
+                                            {formatCurrency(item.qty * item.price)}
+                                        </div>
+                                    </div>
+
+                                </div>
+                            ))
+                        }
+                    </div>
                 </div>
                 <div className="cart-basket w-full">
                     <h2 className='mb-8'>CART TOTALS</h2>
