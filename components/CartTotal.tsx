@@ -5,7 +5,7 @@ import React from 'react'
 const CartTotal = () => {
     const { totalPrice, totalPriceNumber } = useCart()
     return (
-        <div>
+        <div >
 
             <div className='flex justify-between items-center border-b-2 border-gray-600 border:opacity-50 p-4'>
                 <p>Subtotal</p>

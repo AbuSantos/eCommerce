@@ -6,6 +6,7 @@ import Link from "next/link";
 import { formatCurrency } from "@/utils/util";
 import Modal from "./ui/Modal";
 import SideCart from "./SideCart";
+import Image from "next/image";
 
 
 type PropsType = {
@@ -53,7 +54,9 @@ const Product = ({ product, dispatch, inCart, REDUCER_ACTIONS }: PropsType): Rea
 
             <Link href={`/product/${product.id}/`}>
                 <div className="image-container">
-                    <img
+                    <Image
+                        width={500}
+                        height={500}
                         className=" product-img"
                         src={product.image}
                         alt={product.name}

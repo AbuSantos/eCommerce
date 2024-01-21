@@ -20,26 +20,43 @@ const Cart = () => {
 
     const { dispatch, REDUCER_ACTIONS, totalItems, totalPrice, totalPriceNumber, cart } = useCart()
     console.log(totalPrice);
+    // const highestQty: number = 15 > item.qty ? 15 : item.qty
 
-    const optionValues: number[] = [...Array(highestQty).keys()].map(i => i + 1)
-    const options: ReactElement[] = optionValues.map(val => {
-        return (
-            <option key={`opt${val}`} value={val} >{val}</option>
-        )
-    })
-    const onChange = (e: ChangeEvent<HTMLSelectElement>) => {
-        dispatch({
-            type: REDUCER_ACTIONS.QUANTITY,
-            payload: { ...item, qty: Number(e.target.value) }
+    // const optionValues: number[] = [...Array(highestQty).keys()].map(i => i + 1)
+    // const options: ReactElement[] = optionValues.map(val => {
+    //     return (
+    //         <option key={`opt${val}`} value={val} >{val}</option>
+    //     )
+    // })
+    // const optionValues: number[] = [...Array(10).keys()].map((i) => i + 1);
+
+    const options: ReactElement[] = cart
+        .map((item) => {
+            const highestQty: number = 15 > item.qty ? 15 : item.qty;
+
+            const optionValues: number[] = [...Array(highestQty).keys()].map((i) => i + 1);
+
+            return optionValues.map((val) => (
+                <option key={`opt${val}`} value={val}>
+                    {val}
+                </option>
+            ));
         })
-    }
+        .flat();
+
+    // const onChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    //     dispatch({
+    //         type: REDUCER_ACTIONS.QUANTITY,
+    //         payload: { ...item, qty: Number(e.target.value) }
+    //     })
+    // }
 
     return (
         <div>
 
             <BreadCrumps isCartPage={isCartPage} />
 
-            <div className='grid lg:grid-cols-3 md:grid-cols-3 grid-cols-1 w-10/12 m-auto space-x-8 mt-20'>
+            <div className='grid lg:grid-cols-3 md:grid-cols-3 grid-cols-1 w-10/12 m-auto space-x-8 mt-20 '>
                 <div className="product hidden md:flex space-x-10 justify-between col-span-2 ">
                     <table className=' w-full p-2'>
                         <thead>
@@ -105,28 +122,54 @@ const Cart = () => {
                     </table>
 
                 </div>
-                <div className="mobile">
+                <div className="mobile md:hidden ">
                     <div className='mb-8'>
-                        {
-                            cart.map((item) => (
-                                <div className='flex space-x-7'>
-                                    <div className="flex space-x-3">
-                                        <button onClick={() => dispatch({ type: REDUCER_ACTIONS.REMOVE, payload: item })}>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="" viewBox="0 0 24 24" style={{ fill: "#df0707", transform: "msFilter" }}><path d="M7.874 12h8v2h-8z"></path></svg>
-                                        </button>
-                                        <img
-                                            className=" w-20 h-20 shadow"
-                                            src={item.image}
-                                            alt={item.name}
-                                        />
-                                    </div>
-                                    <div>
-                                        <p className="font-bold">
-                                            {item.name}
-                                        </p>
-                                        <div className="text-[0.75rem] w-[10rem] text-gray-500 p-2">
-                                            {formatCurrency(item.price)}
+                        <div className="header flex justify-between uppercase font-semibold  mb-5 border-b-4 border-gray-400 border-opacity-30">
+                            <h3>Product </h3>
+                            <h3>Quantity </h3>
+                        </div>
+                        <div className='border-b-4  border-gray-400 border-opacity-30'>
 
+                            {
+                                cart.map((item) => (
+                                    <div className='flex justify-between items-center mb-3 '>
+                                        <div className="flex space-x-3">
+                                            <button onClick={() => dispatch({ type: REDUCER_ACTIONS.REMOVE, payload: item })}>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="" viewBox="0 0 24 24" style={{ fill: "#df0707", transform: "msFilter" }}><path d="M7.874 12h8v2h-8z"></path></svg>
+                                            </button>
+                                        </div>
+                                        <div>
+                                            <img
+                                                className=" w-20 h-20 shadow"
+                                                src={item.image}
+                                                alt={item.name}
+                                            />
+                                        </div>
+
+                                        <div>
+                                            <div>
+                                                <p className="font-bold ">
+                                                    {item.name}
+                                                </p>
+                                                <p className="text-gray-300 capitalize ">
+                                                    {item.colors}
+                                                </p>
+                                                <p>{item.sizes}</p>
+                                            </div>
+
+
+                                            <div className='flex flex-col'>
+                                                <p className='text-sm font-semibold'>
+                                                    {formatCurrency(item.price)}
+                                                </p>
+                                                <p className='text-sm font-semibold'>
+                                                    {formatCurrency(item.qty * item.price)}
+                                                </p>
+
+                                            </div>
+
+                                        </div>
+                                        <div className="text-[0.9rem] w-[10rem] text-gray-500 p-2 ml-9">
                                             <select name="itemQty" id="itemQty"
                                                 value={item.qty}
                                                 aria-label="Item Quantity"
@@ -134,24 +177,20 @@ const Cart = () => {
                                                     type: REDUCER_ACTIONS.QUANTITY,
                                                     payload: { ...item, qty: Number(e.target.value) }
                                                 })}
-                                                className="ml-5"
+                                                className="ml-20 cursor-pointer outline-none"
                                             >
                                                 {options}
                                             </select>
                                         </div>
-                                        <div aria-label="Line Item SubTotal">
-                                            {formatCurrency(item.qty * item.price)}
-                                        </div>
                                     </div>
-
-                                </div>
-                            ))
-                        }
+                                ))
+                            }
+                        </div>
                     </div>
                 </div>
-                <div className="cart-basket w-full">
-                    <h2 className='mb-8'>CART TOTALS</h2>
-                    <div className=' w-full'>
+                <div className=" ">
+                    <h2 className='mb-4'>CART TOTALS</h2>
+                    <div className=' '>
                         <CartTotal />
                         <div className='w-full bg-gray-900  flex items-center justify-center'>
                             <Link
