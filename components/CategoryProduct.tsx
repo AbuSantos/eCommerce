@@ -1,5 +1,6 @@
 import { InventoryType } from "@/data/inventory"
 import { formatCurrency } from "@/utils/util";
+import Image from "next/image";
 import Link from "next/link";
 
 interface Props {
@@ -13,7 +14,9 @@ const CategoryProduct = ({ categoryProducts }: Props) => {
             {categoryProducts?.map((item) => (
                 <div >
                     <Link href={`/product/${item.id}/`}>
-                        <img
+                        <Image
+                            width={48}
+                            height={52}
                             className=" w-48 h-52  shadow"
                             src={item.image}
                             alt={item.name}

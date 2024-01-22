@@ -55,8 +55,8 @@ const Product = ({ product, dispatch, inCart, REDUCER_ACTIONS }: PropsType): Rea
             <Link href={`/product/${product.id}/`}>
                 <div className="image-container">
                     <Image
-                        width={500}
-                        height={500}
+                        width={400}
+                        height={350}
                         className=" product-img"
                         src={product.image}
                         alt={product.name}

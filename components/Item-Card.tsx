@@ -55,9 +55,11 @@ export function ProductGallery({ product }: Props) {
                             md:ml-0 ml-5"
                         >
                             <span className="absolute inset-0 overflow-hidden rounded-md">
-                                <img
+                                <Image
+                                    width={100}
+                                    height={100}
                                     src={image}
-                                    alt=""
+                                    alt={product.name}
                                     className="h-full w-full object-cover object-center"
                                 />
                             </span>
@@ -72,8 +74,10 @@ export function ProductGallery({ product }: Props) {
 
             {/* Main Image */}
             <div className="aspect-h-1 aspect-w-1 w-full ml-4 md:ml-0" onMouseMove={(event) => zoomIn(event)} onMouseLeave={(event) => resetZoom(event)} >
-                <img
-                    src={product?.images[selectedImage]}
+                <Image
+                    width={400}
+                    height={400}
+                    src={product.images[selectedImage]}
                     alt={`main ${product?.name} image`}
                     className=" object-cover object-center shadow-sm dark:border-gray-800 w-[370px] h-[450px] main-image"
                 />
