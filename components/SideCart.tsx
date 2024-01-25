@@ -4,6 +4,8 @@ import CartLineItem from './CartLineItem';
 import { useRouter } from 'next/navigation';
 import { Button } from './ui/Button';
 import Link from 'next/link';
+import eCart from "@/public/e-cart.svg"
+import Image from 'next/image';
 
 type PropsType = {
     isOpen: boolean,
@@ -35,19 +37,23 @@ const SideCart = ({ isOpen, setIsOpen }: PropsType) => {
                         </span>
                     </button>
 
-                    <h3 className='font-bold text-center p-5'>my CART
+                    <h3 className='font-bold text-center p-5'>
+                        your CART
                     </h3>
                     <div className="flex-grow overflow-y-auto">
                         {cart.length === 0 ? (
                             <>
                                 <div className='p-5 flex justify-center items-center flex-col'>
+                                    <Image src={eCart} className='opacity-15 w-44 h-44' alt='empty cart' />
                                     <p className='text-center mb-4'>Cart is Empty</p>
                                     <button
                                         onClick={toggleSideCart}
                                         type="button"
-                                        className="w-60 bg-gray-900 h-12 text-base font-medium text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-black"
+                                        className="w-60 bg-gray-900 h-12 text-base font-medium text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-black flex items-center justify-center"
                                     >
-                                        Add to cart
+
+                                        Add to Cart
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style={{ fill: "#fff", transform: "msFilter" }}><circle cx="10.5" cy="19.5" r="1.5"></circle><circle cx="17.5" cy="19.5" r="1.5"></circle><path d="M13 13h2v-2.99h2.99v-2H15V5.03h-2v2.98h-2.99v2H13V13z"></path><path d="M10 17h8a1 1 0 0 0 .93-.64L21.76 9h-2.14l-2.31 6h-6.64L6.18 4.23A2 2 0 0 0 4.33 3H2v2h2.33l4.75 11.38A1 1 0 0 0 10 17z"></path></svg>
                                     </button>
                                 </div>
                             </>

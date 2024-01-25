@@ -59,10 +59,10 @@ export async function POST(req: any, res: any) {
 
     try {
       await transporter.sendMail(mailOptions);
-      Response.json({ status: 200, success: true });
+      return Response.json({ status: 200, success: true });
     } catch (error) {
       console.error(error);
-      Response.json({ status: 500, success: true });
+      return Response.json({ status: 500, success: true });
     }
   }
 }

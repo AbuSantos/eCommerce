@@ -2,6 +2,9 @@ import { Dispatch, SetStateAction } from "react";
 import NavButton from "./NavButton";
 import useCart from "@/hooks/useCart";
 import Link from "next/link";
+import Image from "next/image";
+import logo from "@/public/logo.png"
+
 
 // type PropsType = {
 //     viewCart: boolean;
@@ -20,8 +23,10 @@ const Header = ({ isOpen, setIsOpen }: PropsType) => {
     };
     const content = (
         <header className="w-11/12 m-auto p-3">
-            <div className="flex justify-between text-gray-900">
-                <Link href="/">RuthRich</Link>
+            <div className="flex justify-between items-center text-gray-900">
+                <Link href="/">
+                    <Image src={logo} alt="Ruth Rich Designs" className="w-24 h-24" />
+                </Link>
                 <div className=" space-x-2 flex ">
 
                     <div className="relative">
