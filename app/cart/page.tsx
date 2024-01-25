@@ -12,6 +12,7 @@ import { useRouter, usePathname } from 'next/navigation'
 import Link from 'next/link'
 import payment from "@/public/payment.svg"
 import CartTotal from '@/components/CartTotal'
+import Image from 'next/image'
 
 const Cart = () => {
     const router = usePathname()
@@ -20,15 +21,6 @@ const Cart = () => {
 
     const { dispatch, REDUCER_ACTIONS, totalItems, totalPrice, totalPriceNumber, cart } = useCart()
     console.log(totalPrice);
-    // const highestQty: number = 15 > item.qty ? 15 : item.qty
-
-    // const optionValues: number[] = [...Array(highestQty).keys()].map(i => i + 1)
-    // const options: ReactElement[] = optionValues.map(val => {
-    //     return (
-    //         <option key={`opt${val}`} value={val} >{val}</option>
-    //     )
-    // })
-    // const optionValues: number[] = [...Array(10).keys()].map((i) => i + 1);
 
     const options: ReactElement[] = cart
         .map((item) => {
@@ -44,12 +36,10 @@ const Cart = () => {
         })
         .flat();
 
-    // const onChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    //     dispatch({
-    //         type: REDUCER_ACTIONS.QUANTITY,
-    //         payload: { ...item, qty: Number(e.target.value) }
-    //     })
-    // }
+    const onDrag = () => {
+        console.log("dragged");
+
+    }
 
     return (
         <div>
@@ -57,7 +47,7 @@ const Cart = () => {
             <BreadCrumps isCartPage={isCartPage} />
 
             <div className='grid lg:grid-cols-3 md:grid-cols-3 grid-cols-1 w-10/12 m-auto space-x-8 mt-20 '>
-                <div className="product hidden md:flex space-x-10 justify-between col-span-2 ">
+                <div className="product hidden md:flex space-x-10 justify-between col-span-2 text-gray-800 ">
                     <table className=' w-full p-2'>
                         <thead>
                             <tr className='border-b-2 border-gray-500 border-opacity-90 mb-3'>
@@ -132,55 +122,59 @@ const Cart = () => {
 
                             {
                                 cart.map((item) => (
-                                    <div className='flex justify-between items-center mb-3 '>
-                                        <div className="flex space-x-3">
-                                            <button onClick={() => dispatch({ type: REDUCER_ACTIONS.REMOVE, payload: item })}>
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="" viewBox="0 0 24 24" style={{ fill: "#df0707", transform: "msFilter" }}><path d="M7.874 12h8v2h-8z"></path></svg>
-                                            </button>
-                                        </div>
-                                        <div>
-                                            <img
-                                                className=" w-20 h-20 shadow"
+                                    <div className='grid grid-cols-2 mb-3'>
+                                        <div className='flex'>
+                                            <div className="flex">
+                                                <button onClick={() => dispatch({ type: REDUCER_ACTIONS.REMOVE, payload: item })}>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="" viewBox="0 0 24 24" style={{ fill: "#df0707", transform: "msFilter" }}><path d="M7.874 12h8v2h-8z"></path></svg>
+                                                </button>
+                                            </div>
+                                            <Image
+                                                className="w-24 h-24 shadow"
                                                 src={item.image}
                                                 alt={item.name}
+                                            // width={300}
+                                            // height={200}
                                             />
                                         </div>
 
-                                        <div>
+                                        <div className='flex'>
                                             <div>
-                                                <p className="font-bold ">
-                                                    {item.name}
-                                                </p>
-                                                <p className="text-gray-300 capitalize ">
-                                                    {item.colors}
-                                                </p>
-                                                <p>{item.sizes}</p>
+                                                <div>
+                                                    <p className="font-bold text-sm  text-gray-800 flex">
+                                                        {item.name}
+                                                    </p>
+                                                    <p className="text-gray-800 text-[0.7rem] capitalize ">
+                                                        {item.colors}
+                                                    </p>
+                                                    <p className='text-gray-800 text-[0.7rem]'>
+                                                        {item.sizes}
+                                                    </p>
+                                                </div>
+
+                                                <div className='flex flex-col'>
+                                                    <p className=' font-semibold text-gray-800 text-[0.75rem]'>
+                                                        {formatCurrency(item.price)}
+                                                    </p>
+                                                    <p className='text-sm font-semibold text-gray-800'>
+                                                        {formatCurrency(item.qty * item.price)}
+                                                    </p>
+                                                </div>
                                             </div>
 
-
-                                            <div className='flex flex-col'>
-                                                <p className='text-sm font-semibold'>
-                                                    {formatCurrency(item.price)}
-                                                </p>
-                                                <p className='text-sm font-semibold'>
-                                                    {formatCurrency(item.qty * item.price)}
-                                                </p>
-
+                                            <div className="text-[0.9rem] w-[10rem] text-gray-500 p-2 ml-9">
+                                                {/* <select name="itemQty" id="itemQty"
+                                                    value={item.qty}
+                                                    aria-label="Item Quantity"
+                                                    onChange={(e) => dispatch({
+                                                        type: REDUCER_ACTIONS.QUANTITY,
+                                                        payload: { ...item, qty: Number(e.target.value) }
+                                                    })}
+                                                    className="ml-20 cursor-pointer outline-none"
+                                                >
+                                                    {options}
+                                                </select> */}
                                             </div>
-
-                                        </div>
-                                        <div className="text-[0.9rem] w-[10rem] text-gray-500 p-2 ml-9">
-                                            <select name="itemQty" id="itemQty"
-                                                value={item.qty}
-                                                aria-label="Item Quantity"
-                                                onChange={(e) => dispatch({
-                                                    type: REDUCER_ACTIONS.QUANTITY,
-                                                    payload: { ...item, qty: Number(e.target.value) }
-                                                })}
-                                                className="ml-20 cursor-pointer outline-none"
-                                            >
-                                                {options}
-                                            </select>
                                         </div>
                                     </div>
                                 ))
@@ -207,7 +201,7 @@ const Cart = () => {
                 </div>
             </div>
 
-        </div>
+        </div >
     )
 }
 

@@ -30,7 +30,7 @@ const PaystackPayment = () => {
                 const { amount: transactionAmount, authorization_url } = data.reference.data;
 
                 // console.log("Reference ID:", reference);
-                console.log("Transaction Amount:", amount);
+                // console.log("Transaction Amount:", amount);
                 // console.log("Transaction url:", authorization_url);
 
                 window.location.href = authorization_url;
@@ -49,7 +49,6 @@ const PaystackPayment = () => {
             <button onClick={handlePayment} disabled={loading} className=" w-full bg-gray-900 p-3 text-[0.8rem] font-medium text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-black flex items-center justify-center space-x-2 ">
                 <Image src={ppaystack} alt="" width={20} />
                 <p className="">
-
                     {loading ? "Processing..." : "MAKE PAYMENT"}
                 </p>
             </button>

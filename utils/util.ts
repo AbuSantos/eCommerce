@@ -3,18 +3,24 @@ import { twMerge } from "tailwind-merge";
 
 export function getSizeName(value: string | undefined) {
   switch (value) {
-    case "xs":
-      return "X-Small";
-    case "s":
-      return "Small";
-    case "m":
-      return "Medium";
-    case "l":
-      return "Large";
-    case "xl":
-      return "X-Large";
-    case "one-size":
-      return "One Size";
+    case "6":
+      return "Size-6";
+    case "8":
+      return "Size-8";
+    case "10":
+      return "Size-10";
+    case "12":
+      return "Size-12";
+    case "14":
+      return "Size-14";
+    case "16":
+      return "Size-16";
+    case "18":
+      return "Size-18";
+    case "20":
+      return "Size-20";
+    case "22":
+      return "Size-22";
   }
 }
 

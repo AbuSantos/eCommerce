@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { Input } from './ui/Input';
 import { Button } from './ui/Button';
-
+import useCart from '@/hooks/useCart';
+// vdpw yjpf usbe mlbd
 const AddressForm = () => {
+    const { cart } = useCart()
+    cart.map((item) => console.log(item))
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -15,8 +18,15 @@ const AddressForm = () => {
         postcode: '',
         phoneNumber: '',
         extraInformation: '',
-        emailAddress: ''
+        emailAddress: '',
+        cartItems: cart.map((item) => ({
+            name: item.name,
+            colors: item.colors,
+            size: item.sizes,
+            qty: item.qty,
+        })),
     });
+
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -26,28 +36,46 @@ const AddressForm = () => {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         console.log('Form submitted:', formData);
+        try {
+            const res = await fetch('api/nodemailer/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+            if (res.ok) {
+                console.log('Email sent successfully');
+            } else {
+                console.error('Failed to send email');
+            }
+        } catch (error) {
+            console.error('Error sending email', error);
+        }
+
+
     };
 
     return (
-        <form onSubmit={handleSubmit} className="max-w-lg mx-auto mt-8  border-4 border-gray-700 border-opacity-30  p-4">
-            <h2 className='text-gray-200 font-medium p-4 border-b-2 mb-4 md:text-lg text-sm'>DELIVERY ADDRESS</h2>
+        <form onSubmit={handleSubmit} className="max-w-lg mx-auto mt-8  border-4 border-gray-700 border-opacity-30 p-4 text-gray-800">
+            <h2 className='text-gray-800 font-medium p-4 border-b-2 mb-4 md:text-lg text-sm'>DELIVERY ADDRESS</h2>
             <div className="grid grid-cols-2 gap-2 mb-3 ">
                 <div>
-
-                    <Input placeholder='First Name' name="firstName" type="text" id="firstName" value={formData.firstName} onChange={handleChange} />
+                    <Input required placeholder='First Name' name="firstName" type="text" id="firstName" value={formData.firstName} onChange={handleChange} />
                 </div>
                 <div>
-                    <Input placeholder='Last Name' name="lastName" type="text" id="lastName" value={formData.lastName} onChange={handleChange} />
+                    <Input required placeholder='Last Name' name="lastName" type="text" id="lastName" value={formData.lastName} onChange={handleChange} />
                 </div>
             </div>
 
             {/* <div className="grid grid-cols-2 gap-4 mt-4"> */}
-            <div className=''>
+            <div className='mb-2'>
                 <Input
                     placeholder='Country'
+                    required
                     type="text"
                     id="country"
                     name="country"
@@ -56,7 +84,7 @@ const AddressForm = () => {
 
                 />
             </div>
-            <div>
+            <div className='mb-2'>
 
                 <Input
                     placeholder='State'
@@ -68,7 +96,7 @@ const AddressForm = () => {
 
                 />
             </div>
-            <div>
+            <div className='mb-2'>
 
                 <Input
                     placeholder='Town/City'
@@ -80,7 +108,7 @@ const AddressForm = () => {
 
                 />
             </div>
-            <div>
+            <div className='mb-2'>
                 <Input
                     placeholder='Apartment, suite'
                     type="text"
@@ -91,7 +119,7 @@ const AddressForm = () => {
 
                 />
             </div>
-            <div>
+            <div className='mb-2'>
                 <Input
                     placeholder='Street Number'
                     type="text"

@@ -1,11 +1,17 @@
 import useCart from '@/hooks/useCart'
 import { formatCurrency, formatVAT } from '@/utils/util'
+import { Roboto } from 'next/font/google'
 import React from 'react'
 
+const roboto = Roboto({
+    weight: '500',
+    subsets: ['latin'],
+    display: 'swap',
+})
 const CartTotal = () => {
     const { totalPrice, totalPriceNumber } = useCart()
     return (
-        <div >
+        <div className={`${roboto.className} text-gray-800`} >
 
             <div className='flex justify-between items-center border-b-2 border-gray-600 border:opacity-50 p-4'>
                 <p>Subtotal</p>

@@ -4,6 +4,7 @@ import Header from '@/components/Header'
 import { ProductGallery } from '@/components/Item-Card'
 import { ProductInfo } from '@/components/Product-Info'
 import SideCart from '@/components/SideCart'
+import SizeGuide from '@/components/ui/SizeGuide'
 import { CartItemType } from '@/context/CartProvider'
 import { InventoryType, inventory } from '@/data/inventory'
 import React, { useState } from 'react'
@@ -27,24 +28,27 @@ const ProductItem = ({ params }: PropsType) => {
 
         <>
             <Header isOpen={isOpen} setIsOpen={setIsOpen} />
-            <main className="mx-auto max-w-5xl sm:px-6 sm:pt-16 lg:px-8">
+            <main className="mx-auto max-w-7xl sm:px-6 sm:pt-16 lg:px-8">
                 <SideCart isOpen={isOpen} setIsOpen={setIsOpen} />
 
-                <div className="mx-auto max-w-2xl lg:max-w-none">
+                <div className="mx-auto max-w-xl lg:max-w-none">
                     {/* Product */}
-                    <div className="pb-20 lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-12">
+                    <div className="pb-20 lg:grid lg:grid-cols-3 lg:items-start gap-3 ">
                         {/* Product gallery */}
                         <ProductGallery product={product} />
                         {/* Product info */}
                         <ProductInfo product={product} />
+                        <div>
+                            <SizeGuide />
+                        </div>
                     </div>
                 </div>
 
-                <div className='overflow-hidden'>
-                    <h2 className='p-4 text-center capitalize text-xl'>Related products</h2>
+                <div className='w-full'>
+                    <h2 className='p-4 text-center capitalize text-xl text-gray-800'>Related products</h2>
                     <CategoryProduct categoryProducts={categoryProducts} />
                 </div>
-            </main>
+            </main >
         </>
     )
 }

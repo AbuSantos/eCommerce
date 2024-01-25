@@ -3,6 +3,7 @@ import { ReducerAction } from "@/context/CartProvider"
 import { ReducerActionType } from "@/context/CartProvider"
 import { formatCurrency } from "@/utils/util"
 import { validateHeaderValue } from "http"
+import Image from "next/image"
 import { ChangeEvent, Dispatch, ReactElement, useState } from "react"
 
 type PropsType = {
@@ -22,8 +23,6 @@ const CartLineItem = ({ dispatch, item, REDUCER_ACTIONS }: PropsType) => {
     // we making an array of the qty numbers so we can pass the value for the option
     const optionValues: number[] = [...Array(highestQty).keys()].map(i => i + 1)
     const options: ReactElement[] = optionValues.map(val => {
-
-
         return (
             <option key={`opt${val}`} value={val} >{val}</option>
         )
@@ -44,10 +43,12 @@ const CartLineItem = ({ dispatch, item, REDUCER_ACTIONS }: PropsType) => {
     const content = (
         <li className={`flex space-x-6 w-[18rem] ${isOpen ? 'translate-x-0' : ''
             }`}>
-            <img
+            <Image
                 className=" w-24 h-24 shadow"
                 src={item.image}
                 alt={item.name}
+                width={24}
+                height={24}
             />
             <div>
                 <p className="font-bold">

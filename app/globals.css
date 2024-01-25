@@ -17,8 +17,8 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: #000;
+  color: #000;
+  /* background: #000; */
 }
 
 .image-container {

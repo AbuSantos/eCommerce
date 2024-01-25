@@ -1,81 +1,63 @@
 import React from 'react';
 
 const SizeGuide = () => {
-    const lengths: string[] = [
-        "32.5-33", "33.5-36", "36.5-40", "40.5-44"
+    const bust: string[] = [
+        "32", "34", "36", "38", "41", "43", "46", "49", "52"
     ]
+    const waist: string[] = [
+        "24", "26", "28", "30", "33", "36", "39", "42", "45"
+    ]
+    const hips: string[] = [
+        "36", "38", "40", "42", "45", "48", "51", "54", "57"
+    ]
+    const sizes: string[] = [
+        "6", "8", "10", "12", "14", "16", "18", "20", "29"
+    ]
+
     return (
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-            <p className="text-sm text-gray-300">cant find your style,please send us a message with your customized sizes</p>
-            <table className="w-full text-sm text-left rtl:text-right text-blue-100 dark:text-blue-100">
-                <thead className="text-xs text-white uppercase bg-blue-600 dark:text-white">
-                    <tr>
-                        <th scope="col" className="px-6 py-3">
-                            Product Size
-                        </th>
-                        <th scope="col" className="px-6 py-3">
-                            Length
-                        </th>
-                        <th scope="col" className="px-6 py-3">
-                            WAIST
-                        </th>
-                        <th scope="col" className="px-6 py-3">
-                            HIP
-                        </th>
-                        <th scope="col" className="px-6 py-3">
-                            BUST
-                        </th>
-                    </tr>
-                </thead>
+            <h1 className='text-gray-800 p-4 font-semibold '>SIZE GUIDE</h1>
+            <p className="text-sm text-gray-600 p-2">For customized sizes, please contact us</p>
+            <table className="w-full text-sm text-left rtl:text-right text-blue-800 ">
                 <tbody>
                     <tr className="bg-blue-500 border-b border-blue-400">
-                        <td scope="row" className="px-6 py-4 font-medium text-blue-50 whitespace-nowrap dark:text-blue-100">
-                            SMALL
-                        </td>
+                        <th scope="row" className="px-6 py-4 font-medium text-blue-50 whitespace-nowrap dark:text-blue-100">
+                            SIZES
+                        </th>
                         {
-                            lengths.map((lent) => <>
-                                <td className="px-4 py-3">{lent}</td>
-                            </>)
+                            sizes.map((size, index) => (
+                                <td key={index} className="px-4 py-3">{size}</td>
+                            ))
                         }
                     </tr>
                     <tr className="bg-blue-500 border-b border-blue-400">
                         <th scope="row" className="px-6 py-4 font-medium text-blue-50 whitespace-nowrap dark:text-blue-100">
-                            MEDIUM
+                            BUST
                         </th>
                         {
-                            lengths.map((lent) => <>
-                                <td className="px-4 py-3">{lent}</td>
-                            </>)
+                            bust.map((lent, index) => (
+                                <td key={index} className="px-4 py-3">{lent}</td>
+                            ))
                         }
                     </tr>
                     <tr className="bg-blue-500 border-b border-blue-400">
                         <th scope="row" className="px-6 py-4 font-medium text-blue-50 whitespace-nowrap dark:text-blue-100">
-                            LARGE
+                            WAIST
                         </th>
                         {
-                            lengths.map((lent) => <>
-                                <td className="px-4 py-3">{lent}</td>
-                            </>)
+                            waist.map((lent, index) => (
+                                <td key={index} className="px-4 py-3">{lent}</td>
+                            ))
                         }
                     </tr>
                     <tr className="bg-blue-500 border-b border-blue-400">
                         <th scope="row" className="px-6 py-4 font-medium text-blue-50 whitespace-nowrap dark:text-blue-100">
-                            X-LARGE
+                            HIPS
                         </th>
                         {
-                            lengths.map((lent) => <>
-                                <td className="px-4 py-3">{lent}</td>
-                            </>)
-                        }
-                    </tr>
-                    <tr className="bg-blue-500 border-blue-40">
-                        <th scope="row" className="px-6 py-4 font-medium text-blue-50 whitespace-nowrap dark:text-blue-100">
-                            XX-LARGE
-                        </th>
-                        {
-                            lengths.map((lent) => <>
-                                <td className="px-4 py-3">{lent}</td>
-                            </>)
+                            hips.map((lent, index) => (
+                                <td key={index} className="px-4 py-3">{lent}</td>
+                            ))
                         }
                     </tr>
                 </tbody>

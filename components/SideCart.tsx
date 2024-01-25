@@ -35,7 +35,8 @@ const SideCart = ({ isOpen, setIsOpen }: PropsType) => {
                         </span>
                     </button>
 
-                    <h3 className='font-bold text-center p-5'>my CART</h3>
+                    <h3 className='font-bold text-center p-5'>my CART
+                    </h3>
                     <div className="flex-grow overflow-y-auto">
                         {cart.length === 0 ? (
                             <>
