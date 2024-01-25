@@ -37,6 +37,15 @@ export const formatCurrency = (value: any) => {
   return currency;
 };
 
+export const usCurrency = (value: number) => {
+  const cValue = value / 1200;
+  const formatter = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+  }).format(cValue);
+
+  return formatter;
+};
 export const formatVAT = (totalPrice: any): number => {
   const vatPercentage = 7.5 / 100;
   const vatAmount = vatPercentage * totalPrice;

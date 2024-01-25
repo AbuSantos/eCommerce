@@ -69,7 +69,7 @@ const Product = ({ product, dispatch, inCart, REDUCER_ACTIONS }: PropsType): Rea
                     <h3 className="text-[.7rem] font-medium md:text-lg ">{product.name}</h3>
                 </a>
 
-                <div className="flex items-center justify-between">
+                <div className="flex flex-col">
                     <span className="text-sm md:text-xl sm:text-base font-bold text-gray-800"> {formatCurrency(product.price)}</span>
                 </div>
             </div>

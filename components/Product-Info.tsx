@@ -2,7 +2,7 @@ import { ChangeEvent, ReactElement, useState } from "react"
 import Link from "next/link"
 import { InventoryType, } from "@/data/inventory"
 import useCart from "@/hooks/useCart"
-import { formatCurrency, getSizeName } from "@/utils/util"
+import { formatCurrency, getSizeName, usCurrency } from "@/utils/util"
 import { Button } from "./ui/Button"
 import { CartItemType } from "@/context/CartProvider"
 import Image from "next/image"
@@ -65,6 +65,7 @@ export function ProductInfo({ product }: PropsType) {
             <div className="mt-3 text-gray-800">
                 <h2 className="sr-only">Product information</h2>
                 <p className="text-xl md:text-3xl font-semibold tracking-tight">{formatCurrency(price)}</p>
+                <p className="text-xl md:text-3xl font-semibold tracking-tight">{usCurrency(price)}</p>
             </div>
 
             <div className="mt-6">
