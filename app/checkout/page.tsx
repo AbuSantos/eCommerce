@@ -23,9 +23,7 @@ const CheckOut = () => {
         <div>
             < BreadCrumps isCheckOut={isCheckOut} />
             <div className='grid md:grid-cols-3  md:w-8/12 w-11/12 m-auto '>
-                <div className='col-span-2'>
-                    <AddressForm />
-                </div>
+
                 <div className='mt-8 w-full mr-7'>
                     {cart.map((item, index) => (
                         <div className='mb-3'>
@@ -39,10 +37,12 @@ const CheckOut = () => {
                     ))}
                     <div>
 
-                    <CartTotal />
-                    <PaymentOptions/>
-                    {/* <PaystackPayment /> */}
+                        <CartTotal />
+                        {/* <PaystackPayment /> */}
                     </div>
+                </div>
+                <div className='col-span-2'>
+                    <AddressForm />
                 </div>
             </div>
         </div>
@@ -51,19 +51,3 @@ const CheckOut = () => {
 
 export default CheckOut
 
-// pages/checkout.tsx
-
-// import React from 'react';
-
-// const CheckoutPage: React.FC = () => {
-   
-
-//     return (
-//         <div>
-//             <h1>Checkout Page</h1>
-            
-//         </div>
-//     );
-// };
-
-// export default CheckoutPage;

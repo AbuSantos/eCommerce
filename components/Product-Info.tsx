@@ -68,7 +68,7 @@ export function ProductInfo({ product }: PropsType) {
                 <p className="text-xl md:text-3xl font-semibold tracking-tight">{usCurrency(price)}</p>
             </div>
 
-            <div className="mt-6">
+            <div className="mt-6 border-b-2 border-gray-600 border-opacity-15 pb-2">
                 <h3 className="sr-only text-gray-800">Description</h3>
                 <div className={`space-y-6 text-base  text-gray-600 ${roboto.className}`}>{description}</div>
             </div>
@@ -89,7 +89,7 @@ export function ProductInfo({ product }: PropsType) {
                         </Button>
                     ))}
                 </div>
-                <div className="mt-4 mb-4">
+                <div className="mt-4 mb-4 border-b-2 border-gray-600 border-opacity-15 pb-2">
                     <p>
                         Color: <strong>{(selectColor)}</strong>
                     </p>
@@ -106,7 +106,7 @@ export function ProductInfo({ product }: PropsType) {
                 </div>
             </div>
 
-            <form className="flex items-center justify-center space-x-2 md:space-x-1 mt-4 " >
+            <form className="flex items-center justify-center space-x-2 md:space-x-1 mt-4 border-b-2 border-gray-600 border-opacity-15 pb-5 " >
                 <input
                     id={`quantity-${product?.id}`}
                     name={`quantity-${product?.id}`}
@@ -125,6 +125,8 @@ export function ProductInfo({ product }: PropsType) {
                         onClick={addToCart}
                         type="button"
                         className="w-60 md:w-80 lg:w-64 text-sm bg-gray-900 h-16 md:text-base font-medium text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-black flex items-center  justify-center"
+                        disabled={cart.length === 0 ? true : false}
+                    // disabled={!cart.length}
                     >
                         ADD TO CART
                         <Image src={shopping} width={24} alt="shopping cart" className="ml-3" />

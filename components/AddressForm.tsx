@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Input } from './ui/Input';
 import { Button } from './ui/Button';
 import useCart from '@/hooks/useCart';
+import PaymentOptions from './PaymentOptions';
 // vdpw yjpf usbe mlbd
 const AddressForm = () => {
     const { cart } = useCart()
@@ -172,8 +173,9 @@ const AddressForm = () => {
                     />
                 </div>
             </div>
+            <PaymentOptions />
 
-            <Button variant="buy">
+            <Button variant="buy" type='submit'>
                 SUBMIT
             </Button>
         </form>

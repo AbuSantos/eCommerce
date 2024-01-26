@@ -45,8 +45,8 @@ const Footer = () => {
     const year: number = new Date().getFullYear()
 
     return (
-        <div className="bg-yellow-50 p-5 text-gray-800 mt-16">
-            <div className="grid md:grid-cols-2  mx-auto  max-w-5xl bg-yellow-500 rounded-lg p-3 -mt-16">
+        <div className="bg-yellow-50 p-5 text-gray-800 mt-28">
+            <div className="grid md:grid-cols-2  mx-auto  max-w-5xl bg-yellow-500 rounded-lg p-3 -mt-28">
                 <div className="logo flex items-center justify-center">
                     <Image src={logo} alt="Ruth Rich Design" className="w-48 h-48 md:w-60 md:h-60" />
                 </div>
@@ -62,7 +62,7 @@ const Footer = () => {
                         <input
                             placeholder="Email" type="email"
                             value={email}
-                            className="bg-transparent w-8/12 text-yellow-900 outline-none placeholder-yellow-50 "
+                            className="bg-transparent w-8/12 text-yellow-900 outline-none placeholder-yellow-50  "
                             onChange={onChange}
                         />
                         <button className="bg-gray-100 w-4/12 p-3 rounded-br-lg rounded-tr-lg text-sm font-semibold text-yellow-900 " onClick={handleSubmit}>
@@ -76,7 +76,7 @@ const Footer = () => {
 
             </div>
             <main className="md:flex   justify-between mx-auto max-w-7xl text-sm mt-12  ">
-                <div className={`${openSans.className} p-2`}>
+                <div className={`${openSans.className} p-2 text-base`}>
                     <p className="flex">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style={{ fill: "rgba(0, 0, 0, 1)", transform: "msFilter", marginRight: "3px" }}><circle cx="12" cy="12" r="4"></circle><path d="M13 4.069V2h-2v2.069A8.01 8.01 0 0 0 4.069 11H2v2h2.069A8.008 8.008 0 0 0 11 19.931V22h2v-2.069A8.007 8.007 0 0 0 19.931 13H22v-2h-2.069A8.008 8.008 0 0 0 13 4.069zM12 18c-3.309 0-6-2.691-6-6s2.691-6 6-6 6 2.691 6 6-2.691 6-6 6z"></path></svg> Dantata housing estate,kubwa </p>
                     <p className="ml-8 mb-2">Abuja,FCT, Nigeria</p>
@@ -96,8 +96,8 @@ const Footer = () => {
                     </div>
                 </div>
                 <div className={`${openSans.className} p-2`}>
-                    <h1 className="text-xl">TERMS & CONDITION</h1>
-                    <div>
+                    <h1 className="text-3xl">TERMS & CONDITION</h1>
+                    <div className="text-base mt-4">
                         <p>Terms of Use</p>
                         <p>Privacy Policy</p>
                         <p>Returns and Refunds</p>

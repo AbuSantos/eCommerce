@@ -26,6 +26,7 @@ import amberS from "@/public/amberS.jpg";
 import nevada from "@/public/nevada.jpg";
 import nevadaP from "@/public/nevadaP.jpg";
 import nevadaS from "@/public/nevadaS.jpg";
+
 // import twoPieceb from "@/public/twoPieceb.png";
 import { StaticImageData } from "next/image";
 export interface InventoryType {

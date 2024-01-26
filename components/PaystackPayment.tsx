@@ -27,7 +27,7 @@ const PaystackPayment = () => {
 
             if (response.ok) {
                 const data = await response.json();
-                const { amount: transactionAmount, authorization_url } = data.reference.data;
+                const {  authorization_url } = data.reference.data;
 
                 // console.log("Reference ID:", reference);
                 // console.log("Transaction Amount:", amount);

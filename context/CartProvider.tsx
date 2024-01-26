@@ -115,6 +115,9 @@ const reducer = (state: CartStateType, action: ReducerAction): CartStateType => 
 
         //we will set up the payment with paystack soon
         case REDUCER_ACTION_TYPE.SUBMIT: {
+            if (!action.payload) {
+                throw new Error("action.payload missing in SUBMIT action")
+            }
             return { ...state, cart: [] }
         }
         default:
