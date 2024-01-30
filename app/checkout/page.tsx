@@ -7,14 +7,11 @@ import CartTotal from '@/components/CartTotal'
 import BreadCrumps from '@/components/ui/BreadCrumps'
 import useCart from '@/hooks/useCart'
 import { usePathname } from 'next/navigation'
-import { Dispatch, SetStateAction, useState } from 'react';
 
-import React from 'react'
-import PaymentOptions from '@/components/PaymentOptions';
 
 const CheckOut = () => {
-    const router = usePathname()
-    const isCheckOut = router.includes('/checkout');
+    const pathname = usePathname()
+    const isCheckOut = pathname.includes('/checkout');
     console.log(isCheckOut);
     const { dispatch, REDUCER_ACTIONS, totalPriceNumber, cart } = useCart();
 
@@ -26,7 +23,7 @@ const CheckOut = () => {
 
                 <div className='mt-8 w-full mr-7'>
                     {cart.map((item, index) => (
-                        <div className='mb-3'>
+                        <div className='mb-3' key={index}>
                             <CartLineItem
                                 key={index}
                                 item={item}
@@ -37,7 +34,6 @@ const CheckOut = () => {
                     ))}
                     <div>
                         <CartTotal />
-                        {/* <PaystackPayment /> */}
                     </div>
                 </div>
                 <div className='col-span-2'>
