@@ -1,6 +1,6 @@
 import twopeice from "@/public/twopeiece.jpg";
 import twoPiece from "@/public/twoPiece.png";
-import twoPieceb from "@/public/twoPieceb.jpg";
+import twoPieceb from "@/public/twopieceb.jpg";
 import ddD from "@/public/ddD.jpg";
 import ddS from "@/public/ddS.jpg";
 import ddF from "@/public/ddF.jpg";

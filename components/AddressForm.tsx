@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Input } from './ui/Input';
-import { Button } from './ui/Button';
+// import { Button } from './ui/Button';
 import useCart from '@/hooks/useCart';
 import PaymentOptions from './PaymentOptions';
 // vdpw yjpf usbe mlbd
@@ -174,12 +174,6 @@ const AddressForm = () => {
                 </div>
             </div>
             <PaymentOptions handleSubmit={handleSubmit} />
-            <button onClick={() => handleSubmit}>
-                SUBMIT
-            </button>
-            <Button variant="buy" type='submit'>
-                SUBMIT
-            </Button>
         </form>
     );
 };
