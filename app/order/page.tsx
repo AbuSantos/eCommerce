@@ -8,7 +8,7 @@ const page = () => {
     return (
         <div>
             < BreadCrumps isOrder={isOrder} />
-            page
+            successfully paid
         </div>
     )
 }

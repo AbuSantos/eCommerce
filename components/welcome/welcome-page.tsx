@@ -1,10 +1,9 @@
 import styles from './style.module.css'
 import Project from './project';
-import type { GetStaticProps } from 'next'
 import Link from 'next/link';
 import Image from 'next/image';
 import dress from "@/public/dress.svg"
-import { useTransform, useScroll, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 
 export default function WelcomePage() {
@@ -13,35 +12,26 @@ export default function WelcomePage() {
             title1: "Bubba",
             title2: "Women",
             src: "bobba.jpeg",
-            link: "/sunglasses"
         },
         {
             title1: "Combats",
             title2: "Wo/Men",
             src: "cargo.jpeg",
-            link: "/belts"
-
         },
         {
             title1: "Kaftan",
             title2: "Men",
             src: "kaftan.jpeg",
-            link: "/bags"
-
         },
         {
             title1: "Two Piece",
             title2: "Women",
             src: "twopeice.jpg",
-            link: "/scarves"
-
         },
         {
             title1: "Jumpsuits",
-            title2: "Wo/Men",
+            title2: "Women",
             src: "jumpsuit.png",
-            link: "/gloves"
-
         }
     ]
 

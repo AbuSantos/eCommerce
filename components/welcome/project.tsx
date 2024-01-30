@@ -9,15 +9,18 @@ const anim = {
     open: { width: "auto", transition: { duration: 0.4, ease: [0.23, 1, 0.32, 1] } },
     closed: { width: 0 }
 }
+type Props = {
+    project: any
+}
 
-export default function index({ project }) {
+export default function index({ project }: Props) {
     const router = useRouter()
 
     const [isActive, setIsActive] = useState(false);
 
-    const { title1, title2, src, link } = project;
+    const { title1, title2, src } = project;
     return (
-        <div onMouseEnter={() => { setIsActive(true) }} onMouseLeave={() => { setIsActive(false) }} className={styles.project} onClick={() => router.push(`product/${link}`)}>
+        <div onMouseEnter={() => { setIsActive(true) }} onMouseLeave={() => { setIsActive(false) }} className={styles.project} onClick={() => router.push('/shop')}>
             <p>{title1}</p>
             <motion.div variants={anim} animate={isActive ? "open" : "closed"} className={styles.imgContainer}>
                 <img src={`/images/${src}`}></img>

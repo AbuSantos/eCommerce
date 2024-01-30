@@ -5,12 +5,13 @@ import ppaystack from "@/public/ppaystack.svg"
 import next from "@/public/next.svg"
 import Image from "next/image";
 
-const PaystackPayment = () => {
+const PaystackPayment = ({ handleSubmit }) => {
     const [loading, setLoading] = useState(false);
     const { totalPriceNumber } = useCart();
 
 
-    const handlePayment = async () => {
+    const handlePayment = async (e) => {
+        e.preventDefault()
         setLoading(true);
 
         try {
@@ -22,25 +23,33 @@ const PaystackPayment = () => {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ amount, email }),
+                body: JSON.stringify({
+                    amount, email,
+                    redirect_url: "http://localhost:3000/order"
+                }),
             });
 
             if (response.ok) {
                 const data = await response.json();
-                const {  authorization_url } = data.reference.data;
+                console.log(data);
+
+                const { authorization_url } = data.reference.data;
 
                 // console.log("Reference ID:", reference);
                 // console.log("Transaction Amount:", amount);
                 // console.log("Transaction url:", authorization_url);
 
                 window.location.href = authorization_url;
+                handleSubmit()
+
             } else {
-                console.error("Paystack API Error:", response.statusText);
+                return Response.json({ status: 400, "Paystack API Error:": response.status });
             }
         } catch (error) {
             console.error("Error:", error);
         } finally {
             setLoading(false);
+            return Response.json({ status: 200, "Payment received": status })
         }
     };
 

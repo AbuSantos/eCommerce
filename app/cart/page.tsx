@@ -1,8 +1,5 @@
 "use client"
 import React from 'react'
-import { CartItemType } from "@/context/CartProvider"
-import { ReducerAction } from "@/context/CartProvider"
-import { ReducerActionType } from "@/context/CartProvider"
 import { formatCurrency, formatVAT } from "@/utils/util"
 import { ChangeEvent, Dispatch, ReactElement, useState } from "react"
 import useCart from '@/hooks/useCart'
@@ -10,12 +7,14 @@ import { Button } from '@/components/ui/Button'
 import BreadCrumps from '@/components/ui/BreadCrumps'
 import { useRouter, usePathname } from 'next/navigation'
 import Link from 'next/link'
-import payment from "@/public/payment.svg"
+// import payment from "@/public/payment.svg"
 import CartTotal from '@/components/CartTotal'
 import Image from 'next/image'
+import eCart from "@/public/e-cart.svg"
 
 const Cart = () => {
     const router = usePathname()
+    const nRouter = useRouter()
     const isCartPage = router.includes('/cart');
     console.log(isCartPage);
 
@@ -36,10 +35,10 @@ const Cart = () => {
         })
         .flat();
 
-    const onDrag = () => {
-        console.log("dragged");
+    // const onDrag = () => {
+    //     console.log("dragged");
 
-    }
+    // }
 
     return (
         <div>
@@ -60,8 +59,18 @@ const Cart = () => {
                         <tbody>
                             {cart.length === 0 ? (
                                 <tr>
-                                    <td colSpan="4">
-                                        <h3>Cart is empty</h3>
+                                    <td colSpan={4} className='flex items-center justify-center flex-col'>
+                                        <Image src={eCart} className='opacity-15 w-40 h-40' alt='empty cart' />
+                                        <h3 className='text-lg font-medium'>Cart is Empty</h3>
+                                        <button
+                                            onClick={() => nRouter.replace('/shop')}
+                                            type="button"
+                                            className="w-full bg-gray-900 p-4 text-base font-medium text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-black flex items-center justify-center"
+                                        >
+
+                                            Get Stylish
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style={{ fill: "#fff", transform: "msFilter" }}><circle cx="10.5" cy="19.5" r="1.5"></circle><circle cx="17.5" cy="19.5" r="1.5"></circle><path d="M13 13h2v-2.99h2.99v-2H15V5.03h-2v2.98h-2.99v2H13V13z"></path><path d="M10 17h8a1 1 0 0 0 .93-.64L21.76 9h-2.14l-2.31 6h-6.64L6.18 4.23A2 2 0 0 0 4.33 3H2v2h2.33l4.75 11.38A1 1 0 0 0 10 17z"></path></svg>
+                                        </button>
                                     </td>
                                 </tr>
                             ) : (
@@ -183,12 +192,12 @@ const Cart = () => {
                     </div>
                 </div>
                 <div className=" ">
-                    <h2 className='mb-4'>CART TOTALS</h2>
+                    <h2 className='mb-4 font-semibold'>CART TOTALS</h2>
                     <div className=' '>
                         <CartTotal />
                         <div className='w-full bg-gray-900  flex items-center justify-center'>
                             <Link
-                                className="p-4 w-full text-center"
+                                className="p-4 w-full text-center text-gray-50 font-medium"
                                 href="/checkout"
                             >
                                 {/* <img src={payment} alt="payment" /> */}

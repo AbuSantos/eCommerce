@@ -15,20 +15,20 @@ const CartTotal = () => {
 
             <div className='flex justify-between items-center border-b-2 border-gray-600 border:opacity-50 p-4'>
                 <p>Subtotal</p>
-                <p>
+                <p className='font-semibold'>
                     {totalPrice}
                 </p>
             </div>
 
-            <div className='flex justify-between items-center border-b-2 border-gray-600 border:opacity-50 p-4'>
+            <div className='flex justify-between items-center border-b-2 border-gray-600 border:opacity-50 p-4 font-'>
                 <p>VAT(7.5%)</p>
 
-                <p>{formatCurrency(formatVAT(totalPriceNumber))}</p>
+                <p className='font-semibold'>{formatCurrency(formatVAT(totalPriceNumber))}</p>
             </div>
-            <div className='flex justify-between items-center border-b-2 border-gray-600 border:opacity-50 p-4'>
+            <div className='flex justify-between items-center border-b-2 border-gray-600 border:opacity-50 p-4 '>
                 <p>Total</p>
 
-                <p>{formatCurrency(formatVAT(totalPriceNumber) + totalPriceNumber)}</p>
+                <p className='font-semibold' >{formatCurrency(formatVAT(totalPriceNumber) + totalPriceNumber)}</p>
             </div>
         </div>
 

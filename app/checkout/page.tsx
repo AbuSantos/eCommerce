@@ -36,7 +36,6 @@ const CheckOut = () => {
                         </div>
                     ))}
                     <div>
-
                         <CartTotal />
                         {/* <PaystackPayment /> */}
                     </div>

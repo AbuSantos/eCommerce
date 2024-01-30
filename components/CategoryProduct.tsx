@@ -3,7 +3,7 @@ import { formatCurrency } from "@/utils/util";
 import Image from "next/image";
 import Link from "next/link";
 
-interface Props {
+type Props = {
     categoryProducts: InventoryType[] | undefined
 }
 const CategoryProduct = ({ categoryProducts }: Props) => {

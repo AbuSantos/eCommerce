@@ -5,7 +5,7 @@ import "@/style/style.module.css"
 import Link from "next/link";
 import { formatCurrency } from "@/utils/util";
 import Modal from "./ui/Modal";
-import SideCart from "./SideCart";
+// import SideCart from "./SideCart";
 import Image from "next/image";
 
 
@@ -66,11 +66,11 @@ const Product = ({ product, dispatch, inCart, REDUCER_ACTIONS }: PropsType): Rea
 
             <div className="py-2 pb-3">
                 <a href="#">
-                    <h3 className="text-[.7rem] font-medium md:text-lg ">{product.name}</h3>
+                    <h3 className="text-[.7rem] font-medium md:text-sm ">{product.name}</h3>
                 </a>
 
                 <div className="flex flex-col">
-                    <span className="text-sm md:text-xl sm:text-base font-bold text-gray-800"> {formatCurrency(product.price)}</span>
+                    <span className="text-sm md:text-lg sm:text-base font-bold text-gray-800"> {formatCurrency(product.price)}</span>
                 </div>
             </div>
         </div>

@@ -12,27 +12,27 @@ const BreadCrumps = ({ isCartPage, isCheckOut, isOrder }: PropsType) => {
     return (
         <div className="w-full bg-gray-900 ">
 
-            <div className="breadcrump grid lg:grid-cols-3 justify-between items-center m-auto w-8/12 cursor-pointer mt-14 p-3">
+            <div className="breadcrump grid lg:grid-cols-3  m-auto w-10/12 cursor-pointer mt-14 p-3 text-gray-50">
 
-                <div className={`shopping-cart flex items-center space-x-2  ${isCartPage ? 'opacity-100  md:flex' : "opacity-50 hidden md:flex"}`} onClick={() => router.push("/cart")}>
+                <div className={`shopping-cart flex items-center justify-center space-x-2  ${isCartPage ? 'opacity-100  md:flex' : "opacity-50 hidden md:flex"}`} onClick={() => router.push("/cart")}>
                     <h1 className='font-medium text-7xl hidden md:inline-block'>I</h1>
                     <div >
                         <h3 className='font-semibold'>CART</h3>
-                        <p className='text-gray-400 text-sm md:text-base hidden md:inline-block'>Manage your Items List</p>
+                        <p className='text-gray-400 text-[0.8rem] md:text-sm hidden md:inline-block'>Manage your Items List</p>
                     </div>
                 </div>
-                <div className={`checkout-details flex items-center space-x-2 ${isCheckOut ? 'opacity-100 md:flex' : "opacity-50 hidden md:flex"}`} onClick={() => router.push("/checkout")}>
+                <div className={`checkout-details flex items-center justify-center space-x-2 ${isCheckOut ? 'opacity-100 md:flex' : "opacity-50 hidden md:flex"}`} onClick={() => router.push("/checkout")}>
                     <h1 className='font-medium text-7xl hidden md:inline-block' >II</h1>
                     <div>
                         <h3 className='font-semibold text-center'>CHECKOUT DETAILS</h3>
-                        <p className='text-gray-400 text-sm md:text-base hidden md:inline-block'>Manage payment details and Shipping Address</p>
+                        <p className='text-gray-400 text-[0.8rem] md:text-sm hidden md:inline-block'>Manage payment details and Shipping Address</p>
                     </div>
                 </div>
-                <div className={`checkout-details flex items-center space-x-2 ${isOrder ? 'opacity-100 md:flex' : "opacity-50 hidden md:flex"}`} onClick={() => router.push("/order")}>
+                <div className={`checkout-details flex items-center justify-center  space-x-2 ${isOrder ? 'opacity-100 md:flex' : "opacity-50 hidden md:flex"}`} onClick={() => router.push("/order")}>
                     <h1 className='font-medium text-7xl hidden md:inline-block'>III</h1>
                     <div>
                         <h3 className='font-semibold'>ORDER COMPLETE</h3>
-                        <p className='text-gray-400 text-sm md:text-base hidden md:inline-block'>Manage your Items List</p>
+                        <p className='text-gray-400 text-[0.8rem] md:text-sm hidden md:inline-block'>Manage your Items List</p>
                     </div>
                 </div>
             </div>

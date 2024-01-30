@@ -37,8 +37,8 @@ const AddressForm = () => {
         });
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const handleSubmit = async (e: any) => {
+        // e.preventDefault();
         console.log('Form submitted:', formData);
         try {
             const res = await fetch('api/nodemailer/', {
@@ -173,8 +173,10 @@ const AddressForm = () => {
                     />
                 </div>
             </div>
-            <PaymentOptions />
-
+            <PaymentOptions handleSubmit={handleSubmit} />
+            <button onClick={() => handleSubmit}>
+                SUBMIT
+            </button>
             <Button variant="buy" type='submit'>
                 SUBMIT
             </Button>
