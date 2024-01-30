@@ -5,8 +5,9 @@ import useCart from '@/hooks/useCart';
 import PaymentOptions from './PaymentOptions';
 // vdpw yjpf usbe mlbd
 const AddressForm = () => {
+    const [isOPen, setIsOpen] = useState<boolean>(true)
     const { cart } = useCart()
-    cart.map((item) => console.log(item))
+    // cart.map((item) => console.log(item))
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -36,7 +37,9 @@ const AddressForm = () => {
             [name]: value,
         });
     };
-
+    const toggleIsOpen = () => {
+        setIsOpen((prev) => !prev);
+    }
     const handleSubmit = async (e: any) => {
         // e.preventDefault();
         console.log('Form submitted:', formData);
@@ -62,117 +65,122 @@ const AddressForm = () => {
 
     return (
         <form onSubmit={handleSubmit} className="max-w-lg mx-auto mt-8  border-4 border-gray-700 border-opacity-30 p-4 text-gray-800">
-            <h2 className='text-gray-800 font-medium p-4 border-b-2 mb-4 md:text-lg text-sm'>DELIVERY ADDRESS</h2>
-            <div className="grid grid-cols-2 gap-2 mb-3 ">
-                <div>
-                    <Input required placeholder='First Name' name="firstName" type="text" id="firstName" value={formData.firstName} onChange={handleChange} />
-                </div>
-                <div>
-                    <Input required placeholder='Last Name' name="lastName" type="text" id="lastName" value={formData.lastName} onChange={handleChange} />
-                </div>
-            </div>
+            <h2 className='text-gray-800 font-medium p-4 border-b-2 mb-4 md:text-lg text-sm' onClick={() => toggleIsOpen()}>DELIVERY ADDRESS</h2>
 
-            {/* <div className="grid grid-cols-2 gap-4 mt-4"> */}
-            <div className='mb-2'>
-                <Input
-                    placeholder='Country'
-                    required
-                    type="text"
-                    id="country"
-                    name="country"
-                    value={formData.country}
-                    onChange={handleChange}
+            {isOPen &&
 
-                />
-            </div>
-            <div className='mb-2'>
+                <>
+                    <div className="grid grid-cols-2 gap-2 mb-3 ">
+                        <div>
+                            <Input required placeholder='First Name' name="firstName" type="text" id="firstName" value={formData.firstName} onChange={handleChange} />
+                        </div>
+                        <div>
+                            <Input required placeholder='Last Name' name="lastName" type="text" id="lastName" value={formData.lastName} onChange={handleChange} />
+                        </div>
+                    </div>
 
-                <Input
-                    placeholder='State'
-                    type="text"
-                    id="state"
-                    name="state"
-                    value={formData.state}
-                    onChange={handleChange}
 
-                />
-            </div>
-            <div className='mb-2'>
+                    <div className='mb-2'>
+                        <Input
+                            placeholder='Country'
+                            required
+                            type="text"
+                            id="country"
+                            name="country"
+                            value={formData.country}
+                            onChange={handleChange}
 
-                <Input
-                    placeholder='Town/City'
-                    type="text"
-                    id="city"
-                    name="city"
-                    value={formData.city}
-                    onChange={handleChange}
+                        />
+                    </div>
+                    <div className='mb-2'>
 
-                />
-            </div>
-            <div className='mb-2'>
-                <Input
-                    placeholder='Apartment, suite'
-                    type="text"
-                    id="apartment"
-                    name="apartmentNumber"
-                    value={formData.apartmentNumber}
-                    onChange={handleChange}
+                        <Input
+                            placeholder='State'
+                            type="text"
+                            id="state"
+                            name="state"
+                            value={formData.state}
+                            onChange={handleChange}
 
-                />
-            </div>
-            <div className='mb-2'>
-                <Input
-                    placeholder='Street Number'
-                    type="text"
-                    id="streetNumber"
-                    name="streetNumber"
-                    value={formData.streetNumber}
-                    onChange={handleChange}
+                        />
+                    </div>
+                    <div className='mb-2'>
 
-                />
-            </div>
-            <div className="grid grid-cols-2 gap-2">
-                <div>
-                    <Input
-                        placeholder='Phone Number'
-                        required
-                        type="text"
-                        id="phoneNumber"
-                        name="phoneNumber"
-                        value={formData.phoneNumber}
-                        onChange={handleChange}
+                        <Input
+                            placeholder='Town/City'
+                            type="text"
+                            id="city"
+                            name="city"
+                            value={formData.city}
+                            onChange={handleChange}
 
-                    />
-                </div>
-                <div>
-                    <Input
-                        placeholder='Email Address'
-                        required
-                        type="email"
-                        id="emailAddress"
-                        name="emailAddress"
-                        value={formData.emailAddress}
-                        onChange={handleChange}
+                        />
+                    </div>
+                    <div className='mb-2'>
+                        <Input
+                            placeholder='Apartment, suite'
+                            type="text"
+                            id="apartment"
+                            name="apartmentNumber"
+                            value={formData.apartmentNumber}
+                            onChange={handleChange}
 
-                    />
-                </div>
-            </div>
+                        />
+                    </div>
+                    <div className='mb-2'>
+                        <Input
+                            placeholder='Street Number'
+                            type="text"
+                            id="streetNumber"
+                            name="streetNumber"
+                            value={formData.streetNumber}
+                            onChange={handleChange}
 
-            <div className="grid grid-cols-2 gap-4 mt-4">
+                        />
+                    </div>
+                    <div className="grid grid-cols-2 gap-2">
+                        <div>
+                            <Input
+                                placeholder='Phone Number'
+                                required
+                                type="text"
+                                id="phoneNumber"
+                                name="phoneNumber"
+                                value={formData.phoneNumber}
+                                onChange={handleChange}
 
-                <div className="col-span-2">
-                    <textarea
-                        Extra Information
-                        placeholder='Extra Information'
-                        id="extraInformation"
-                        name="extraInformation"
-                        value={formData.extraInformation}
-                        onChange={handleChange}
-                        rows="3"
-                        className="w-full p-2 border border-gray-700 border-opacity-40 rounded  focus:outline-none bg-transparent text-sm md:text-base"
-                    />
-                </div>
-            </div>
+                            />
+                        </div>
+                        <div>
+                            <Input
+                                placeholder='Email Address'
+                                required
+                                type="email"
+                                id="emailAddress"
+                                name="emailAddress"
+                                value={formData.emailAddress}
+                                onChange={handleChange}
+
+                            />
+                        </div>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-4 mt-4">
+                        <div className="col-span-2">
+                            <textarea
+                                Extra Information
+                                placeholder='Extra Information'
+                                id="extraInformation"
+                                name="extraInformation"
+                                value={formData.extraInformation}
+                                onChange={handleChange}
+                                rows="3"
+                                className="w-full p-2 border border-gray-700 border-opacity-40 rounded  focus:outline-none bg-transparent text-sm md:text-base"
+                            />
+                        </div>
+                    </div>
+                </>
+            }
             <PaymentOptions handleSubmit={handleSubmit} />
         </form>
     );
