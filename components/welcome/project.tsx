@@ -13,7 +13,7 @@ type Props = {
     project: any
 }
 
-export default function index({ project }: Props) {
+export default function Index({ project }: Props) {
     const router = useRouter()
 
     const [isActive, setIsActive] = useState(false);
