@@ -130,8 +130,8 @@ const Cart = () => {
                         <div className='border-b-4  border-gray-400 border-opacity-30'>
 
                             {
-                                cart.map((item) => (
-                                    <div className='grid grid-cols-2 mb-3'>
+                                cart.map((item, index) => (
+                                    <div className='grid grid-cols-2 mb-3' key={index}>
                                         <div className='flex'>
                                             <div className="flex">
                                                 <button onClick={() => dispatch({ type: REDUCER_ACTIONS.REMOVE, payload: item })}>
