@@ -8,8 +8,8 @@ export type CartItemType = {
     name: string,
     image: string | StaticImageData;
     images: string[] | StaticImageData[];
-    sizes: string[],
-    colors: string[],
+    sizes: string[] | string,
+    colors: string[] | string,
     price: number,
     sku: string,
     qty?: number,
