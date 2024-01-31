@@ -168,13 +168,12 @@ const AddressForm = () => {
                     <div className="grid grid-cols-2 gap-4 mt-4">
                         <div className="col-span-2">
                             <textarea
-                                Extra Information
-                                placeholder='Extra Information'
+                                placeholder='Extra Information for Delivery'
                                 id="extraInformation"
                                 name="extraInformation"
                                 value={formData.extraInformation}
                                 onChange={handleChange}
-                                rows="3"
+                                rows={3}
                                 className="w-full p-2 border border-gray-700 border-opacity-40 rounded  focus:outline-none bg-transparent text-sm md:text-base"
                             />
                         </div>
