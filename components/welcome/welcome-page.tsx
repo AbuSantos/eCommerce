@@ -54,8 +54,8 @@ export default function WelcomePage() {
                     </Link>
                 </div>
                 {
-                    projects.map(project => {
-                        return <Project project={project} />
+                    projects.map((project, index) => {
+                        return <Project project={project} key={index} />
                     })}
             </div>
         </main>
