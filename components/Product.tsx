@@ -4,7 +4,7 @@ import { ReactElement, useEffect, useState } from "react";
 import "@/style/style.module.css"
 import Link from "next/link";
 import { formatCurrency } from "@/utils/util";
-import Modal from "./ui/Modal";
+// import Modal from "./ui/Modal";
 // import SideCart from "./SideCart";
 import Image from "next/image";
 
@@ -42,7 +42,7 @@ const Product = ({ product, dispatch, inCart, REDUCER_ACTIONS }: PropsType): Rea
 
     const content = (
         <div className="w-full max-w-sm relative overflow-hidden">
-            <div>
+            {/* <div>
                 {isOpen &&
                     <Modal
                         product={product}
@@ -50,7 +50,7 @@ const Product = ({ product, dispatch, inCart, REDUCER_ACTIONS }: PropsType): Rea
                         setIsOpen={setIsOpen}
                     />
                 }
-            </div>
+            </div> */}
 
             <Link href={`/product/${product.id}/`}>
                 <div className="image-container">
