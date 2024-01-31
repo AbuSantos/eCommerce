@@ -2,7 +2,7 @@
 import BreadCrumps from "@/components/ui/BreadCrumps";
 import { usePathname } from "next/navigation";
 
-const page = () => {
+const Page = () => {
     const router = usePathname()
     const isOrder = router.includes('/order');
     return (
@@ -13,4 +13,4 @@ const page = () => {
     )
 }
 
-export default page
+export default Page

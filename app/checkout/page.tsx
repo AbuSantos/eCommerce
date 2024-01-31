@@ -12,7 +12,7 @@ import { usePathname } from 'next/navigation'
 const CheckOut = () => {
     const pathname = usePathname()
     const isCheckOut = pathname.includes('/checkout');
-    console.log(isCheckOut);
+    // console.log(isCheckOut);
     const { dispatch, REDUCER_ACTIONS, totalPriceNumber, cart } = useCart();
 
 
