@@ -9,7 +9,7 @@ import { CartItemType } from '@/context/CartProvider'
 import { InventoryType, inventory } from '@/data/inventory'
 import React, { useState } from 'react'
 type PropsType = {
-    params: CartItemType
+    params: InventoryType | undefined
 }
 const ProductItem = ({ params }: PropsType) => {
     const product: InventoryType | undefined = inventory.find(item => item.id === params.id)

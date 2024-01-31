@@ -1,17 +1,18 @@
 "use client"
 import { InventoryType, inventory } from "@/data/inventory";
+import { StaticImageData } from "next/image";
 import { useMemo, useReducer, createContext, ReactNode, ReactElement } from "react";
 
 export type CartItemType = {
     id: string,
     name: string,
-    image: string,
-    images: string[],
+    image: string | StaticImageData;
+    images: string[] | StaticImageData[];
     sizes: string[],
     colors: string[],
     price: number,
     sku: string,
-    qty: number,
+    qty?: number,
     description: string,
     categories: string[]
 }

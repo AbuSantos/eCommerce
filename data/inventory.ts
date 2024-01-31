@@ -41,6 +41,7 @@ export interface InventoryType {
   price: number;
   description: string;
   sku: string;
+  // qty:number;
 }
 
 export const inventory: InventoryType[] = [

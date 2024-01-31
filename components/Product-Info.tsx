@@ -12,7 +12,7 @@ import { Roboto } from "next/font/google"
 // import { useToast } from "@/components/ui/use-toast"
 
 interface PropsType {
-    product: CartItemType | undefined
+    product: InventoryType | undefined
 }
 const roboto = Roboto({
     weight: "400",
