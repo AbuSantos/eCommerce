@@ -10,9 +10,9 @@ import { motion } from 'framer-motion';
 
 
 export default function Home() {
-    const toggleSideCart = () => {
-        setIsOpen(!isOpen);
-    };
+    // const toggleSideCart = () => {
+    //     setIsOpen(!isOpen);
+    // };
     const [isOpen, setIsOpen] = useState<boolean>(false)
     const [openProducts, setOpenProducts] = useState(true)
 
