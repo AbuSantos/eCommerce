@@ -85,7 +85,7 @@ const Cart = () => {
                                                         <path d="M7 12L17 12" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                                                     </svg>
                                                 </button>
-                                                <img
+                                                <Image
                                                     className=" md:w-24 md:h-24 shadow w-20 h-20"
                                                     src={item.image}
                                                     alt={item.name}
